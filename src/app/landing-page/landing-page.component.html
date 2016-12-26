@@ -1,0 +1,32 @@
+<div id="landing-page">
+  <div class="background-layer">
+    <div class="top-bar">
+      <div class="wekker-nav-title">
+        WEKKER
+      </div>
+    </div>
+    <div class="expanded row">
+      <div class="large-push-4 large-4 column">
+        <div class="show-for-large info-message-container">
+          <div class="static-text">
+            Never miss
+          </div>
+          <div [@dynamicText]="informationMessage" class="dynamic-text">
+              {{informationMessage}}
+          </div>
+        </div>
+      </div>
+      <div class="large-4 column">
+        <div class="show-for-large input-container-top-padding"></div>
+        <div class="input-container">
+          <div class="input-container-menu">
+            <a (click)="switchToLogin = false" [ngClass]="{'selected': !switchToLogin}" class="small small-6 column button"> Sign Up </a>
+            <a (click)="switchToLogin = true" [ngClass]="{'selected': switchToLogin}" class="small small-6 column button"> Log In </a>
+          </div>
+          <login *ngIf="switchToLogin"></login>
+          <sign-up *ngIf="!switchToLogin"></sign-up>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

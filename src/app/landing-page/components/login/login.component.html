@@ -1,0 +1,27 @@
+<!-- Container Title-->
+<div class="input-container-title">
+  Welcome back!
+</div>
+
+<!-- Container Fields-->
+<div [formGroup]="form" (keyup.enter)="doLoginRequest(form)" class="input-container-fields">
+
+  <!-- Field: E-mail Address -->
+  <div class="input-field">
+    <label>E-mail Address</label>
+    <input type="text" placeholder="E-mail Address" formControlName="email_address" maxlength="35">
+    <span *ngIf="form.get('email_address').touched && form.get('email_address').valid" class="fa fa-check success-validation"></span>
+  </div>
+
+  <!-- Field: Password -->
+  <div class="input-field">
+    <label>Password</label>
+    <input type="password" placeholder="Password" formControlName="password">
+    <span *ngIf="form.get('password').touched && form.get('password').valid" class="fa fa-check success-validation"></span>
+  </div>
+</div>
+
+<!-- Container Submit Button-->
+<div class="input-container-button">
+  <a (click)="doLoginRequest(form)" class="medium hollow expanded button">Log In</a>
+</div>
