@@ -14,6 +14,7 @@ import {Component, OnInit, trigger, transition, style, animate} from '@angular/c
 
 export class LandingPageComponent implements OnInit {
   private switchToLogin: boolean = false;
+  private switchToForgetPassword: boolean = false;
   private informationMessage: string;
   private informationMessageIndex: number = 0;
   private informationMessages: string[] = [

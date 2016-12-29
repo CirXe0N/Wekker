@@ -9,13 +9,15 @@ import {appRoutes} from "./app.routes";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {LoginComponent} from "./landing-page/components/login/login.component";
 import {SignUpComponent} from "./landing-page/components/sign-up/sign-up.component";
+import {ForgotPasswordComponent} from "./landing-page/components/forgot-password/forgot-password.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
