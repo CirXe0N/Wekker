@@ -9,6 +9,7 @@ import {SignUpRequest} from "./sign-up.interface";
 
 export class SignUpComponent implements OnInit {
   private form: FormGroup;
+  private isRequesting: boolean = false;
 
   constructor() {}
 
@@ -22,6 +23,8 @@ export class SignUpComponent implements OnInit {
   }
 
   private doSignUpRequest({value, valid}: {value: SignUpRequest, valid: boolean}) {
+    this.isRequesting = true;
+
     if(valid) {
       console.log(value);
     }

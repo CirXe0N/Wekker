@@ -37,5 +37,17 @@
 
 <!-- Container Submit Button-->
 <div class="input-container-button">
-  <a (click)="doSignUpRequest(form)" class="medium hollow expanded button"> Get Started! </a>
+
+  <!-- Active button with functionality to do a request -->
+  <a *ngIf="!isRequesting" (click)="doSignUpRequest(form)" class="medium hollow expanded button"> Get Started! </a>
+
+  <!-- Disabled button during a request -->
+  <a *ngIf="isRequesting" class="medium hollow expanded button is-active">
+    <div class="loading">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+  </a>
 </div>

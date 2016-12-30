@@ -107,8 +107,54 @@
         color: #FFF
 
         &:hover
-          background-color: #FFFFFF
+          background-color: #FFF
           color: #333
+
+        &.is-active
+          background-color: #FFF
+          cursor: default
+
+          .successful
+            color: #25bf52
+
+          .loading
+            margin: 0 auto
+            height: 15px
+            text-align: center
+
+            div
+              background-color: #525252
+              height: 100%
+              width: 6px
+              display: inline-block
+              -webkit-animation: loader-animation 1.2s infinite ease-in-out
+              animation: loader-animation 1.2s infinite ease-in-out
+
+              &.rect2
+                -webkit-animation-delay: -1.1s
+                animation-delay: -1.1s
+
+              &.rect3
+                -webkit-animation-delay: -1.0s
+                animation-delay: -1.0s
+
+              &.rect4
+                -webkit-animation-delay: -0.9s
+                animation-delay: -0.9s
+
+          @-webkit-keyframes loader-animation
+            0%, 40%, 100%
+              -webkit-transform: scaleY(0.4)
+
+            20%
+              -webkit-transform: scaleY(1.0)
+
+          @keyframes loader-animation
+            0%, 40%, 100%
+              transform: scaleY(0.4)
+
+            20%
+              transform: scaleY(1.0)
 
   .forgot-password-container
     font-size: 0.8rem

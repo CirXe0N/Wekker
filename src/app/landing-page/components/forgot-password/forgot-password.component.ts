@@ -9,6 +9,8 @@ import {ForgotPasswordRequest} from "./forgot-password.interface";
 
 export class ForgotPasswordComponent implements OnInit {
   private form: FormGroup;
+  private isSuccessfulRequest: boolean = false;
+  private isRequesting: boolean = false;
 
   constructor() {}
 
@@ -19,8 +21,12 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   private doForgotPasswordRequest({value, valid}: {value: ForgotPasswordRequest, valid: boolean}) {
+    this.isRequesting = true;
     if(valid) {
       console.log(value);
+
+      // Successful Request
+      this.isSuccessfulRequest = true;
     }
   }
 }

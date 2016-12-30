@@ -9,6 +9,7 @@ import {LoginRequest} from "./login.interface";
 
 export class LoginComponent implements OnInit {
   private form: FormGroup;
+  private isRequesting: boolean = false;
 
   constructor() {}
 
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   private doLoginRequest({value, valid}: {value: LoginRequest, valid: boolean}) {
+    this.isRequesting = true;
+
     if(valid) {
       console.log(value);
     }
