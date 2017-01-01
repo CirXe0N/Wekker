@@ -10,6 +10,9 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {LoginComponent} from "./landing-page/components/login/login.component";
 import {SignUpComponent} from "./landing-page/components/sign-up/sign-up.component";
 import {ForgotPasswordComponent} from "./landing-page/components/forgot-password/forgot-password.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {CollectionListComponent} from "./dashboard/components/collection-list/collection-list.component";
+import {CollectionListSearchPipe} from "./dashboard/components/collection-list/pipes/collection-list-search.pipe";
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import {ForgotPasswordComponent} from "./landing-page/components/forgot-password
     LandingPageComponent,
     LoginComponent,
     SignUpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    DashboardComponent,
+    CollectionListComponent,
+    CollectionListSearchPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

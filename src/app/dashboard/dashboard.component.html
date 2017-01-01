@@ -1,0 +1,15 @@
+<div id="dashboard">
+  <div class="background-layer">
+    <div class="top-bar">
+      <div (click)="toggleCollectionSidebar()" class="collection-toggle-button hide-for-large" [ngClass]="{'active': isActiveCollectionSidebar}">
+        <i class="fa fa-film fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="wekker-nav-title">
+        WEKKER
+      </div>
+    </div>
+
+    <collection-list class="hide-for-large" *ngIf="isActiveCollectionSidebar"></collection-list>
+    <collection-list class="show-for-large"></collection-list>
+  </div>
+</div>
