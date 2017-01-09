@@ -13,6 +13,9 @@ import {ForgotPasswordComponent} from "./landing-page/components/forgot-password
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CollectionListComponent} from "./dashboard/components/collection-list/collection-list.component";
 import {CollectionListSearchPipe} from "./dashboard/components/collection-list/pipes/collection-list-search.pipe";
+import {UpcomingReleasesListComponent} from "./dashboard/components/upcoming-releases-list/upcoming-releases-list.component";
+import {StatisticCardComponent} from "./dashboard/components/statistic-card/statistic-card.component";
+import {WatchListComponent} from "./dashboard/components/watch-list/watch-list.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import {CollectionListSearchPipe} from "./dashboard/components/collection-list/p
     ForgotPasswordComponent,
     DashboardComponent,
     CollectionListComponent,
-    CollectionListSearchPipe
+    CollectionListSearchPipe,
+    UpcomingReleasesListComponent,
+    StatisticCardComponent,
+    WatchListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

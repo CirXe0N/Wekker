@@ -1,0 +1,17 @@
+<div class="upcoming-releases-container">
+  <h1>
+    <i class="fa fa-calendar" aria-hidden="true"></i>
+    Upcoming releases
+  </h1>
+  <div *ngFor="let releaseDate of releaseDates">
+    <h2> {{ releaseDate.date }} </h2>
+    <div *ngFor="let release of releaseDate.releases" class="item">
+      <img src="{{ release.poster_url }}">
+      <div class="item-information">
+        <div class="title">{{ release.title }}</div>
+        <div class="episode-title"> Season <span>{{ release.season }}</span> - episode <span>{{ release.episode }}</span> </div>
+      </div>
+    </div>
+    <div *ngIf="releaseDate.releases.length == 0" class="empty-list"> No releases planned for this day.</div>
+  </div>
+</div>
