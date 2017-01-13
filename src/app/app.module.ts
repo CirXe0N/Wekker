@@ -16,6 +16,7 @@ import {CollectionListSearchPipe} from "./dashboard/components/collection-list/p
 import {UpcomingReleasesListComponent} from "./dashboard/components/upcoming-releases-list/upcoming-releases-list.component";
 import {StatisticCardComponent} from "./dashboard/components/statistic-card/statistic-card.component";
 import {WatchListComponent} from "./dashboard/components/watch-list/watch-list.component";
+import {IdeaBoxComponent} from "./dashboard/components/idea-box/idea-box.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {WatchListComponent} from "./dashboard/components/watch-list/watch-list.c
     CollectionListSearchPipe,
     UpcomingReleasesListComponent,
     StatisticCardComponent,
-    WatchListComponent
+    WatchListComponent,
+    IdeaBoxComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
