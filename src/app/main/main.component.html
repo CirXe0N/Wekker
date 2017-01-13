@@ -1,0 +1,22 @@
+<div id="main">
+  <div class="background-layer">
+
+    <!--NAVIGATION BAR-->
+    <div class="top-bar">
+      <div (click)="toggleCollectionSidebar()" class="collection-toggle-button" [ngClass]="{'active': isActiveCollectionSidebar}">
+        <i class="fa fa-film fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="wekker-nav-title">
+        WEKKER
+      </div>
+    </div>
+
+    <!--COLLECTION LIST-->
+    <collection-list [ngClass]="{'open-menu': isActiveCollectionSidebar}"></collection-list>
+
+    <!--CONTENT CONTAINER-->
+    <div class="content-container" [ngClass]="{'open-menu': isActiveCollectionSidebar}">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
