@@ -1,0 +1,67 @@
+#tv-shows-details
+  a.button
+    border: 1px solid #FFF
+    background-color: rgba(0, 0, 0, 0.1)
+    color: #FFF
+
+    &:hover
+      background-color: #FFF
+      color: #333
+
+    &.is-active
+      background-color: #FFF
+      color: #333
+      cursor: default
+
+  .back-button.expanded
+    width: 134px
+
+    @media screen and (max-width: 39.9375em)
+      width: 100%
+
+  .media-object-section
+    img
+      max-width: 125px
+
+  .information-container
+    font-family: $font-gudea
+
+    .information
+      display: inline-block
+      font-size: 0.7rem
+      color: rgba(255, 255, 255, 0.6)
+      font-weight: 700
+
+      span
+        font-size: 0.8rem
+        color: #FFF
+        font-weight: 400
+
+      &:last-child
+        padding-bottom: 1rem
+
+    .title
+      font-size: 1.5rem
+      color: #FFF
+
+    .description
+      font-size: 0.7rem
+      color: rgba(255, 255, 255, 0.6)
+      font-weight: 700
+      margin-bottom: 1rem
+
+      span
+        text-align: justify
+        display: block
+        font-size: 0.8rem
+        color: #FFF
+        font-weight: 400
+
+  .options-container
+    a.button
+      text-align: left
+      margin-bottom: 0.2rem
+
+  .section-selector
+    margin-top: 1rem
+

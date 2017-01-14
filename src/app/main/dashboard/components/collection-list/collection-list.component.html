@@ -7,7 +7,7 @@
   </div>
 
   <ul class="collection-list">
-    <li *ngFor="let item of collectionList | search: searchInput">
+    <li *ngFor="let item of collectionList | search: searchInput" [routerLink]="['/main/tv-shows/' + item.id]">
       <img src="{{item.poster_url}}">
       <div class="item-information">
         <div class="title"> {{item.title}} </div>
