@@ -20,6 +20,8 @@ import {IdeaBoxComponent} from "./main/dashboard/components/idea-box/idea-box.co
 import {MainComponent} from "./main/main.component";
 import {TVShowDetailsComponent} from "./main/tv-show-details/tv-show-details.component";
 import {MovieDetailsComponent} from "./main/movie-details/movie-details-component";
+import {EpisodeGuideComponent} from "./main/tv-show-details/components/episode-guide/episode-guide.component";
+import {CrewListComponent} from "./main/tv-show-details/components/crew-list/crew-list.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {MovieDetailsComponent} from "./main/movie-details/movie-details-componen
     WatchListComponent,
     IdeaBoxComponent,
     MovieDetailsComponent,
-    TVShowDetailsComponent
+    TVShowDetailsComponent,
+    EpisodeGuideComponent,
+    CrewListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -52,8 +52,11 @@
 
   <div class="row">
     <div class="section-selector large-push-9 large-3 columns">
-      <a class="small small-6 column button is-active"> Episodes Guide </a>
-      <a class="small small-6 column button"> Cast & Crew </a>
+      <a (click)="selectPage('Episode Guide')" [ngClass]="{'selected': selectedPage == 'Episode Guide'}" class="small small-6 column button"> Episodes Guide </a>
+      <a (click)="selectPage('Cast & Crew')" [ngClass]="{'selected': selectedPage == 'Cast & Crew'}" class="small small-6 column button"> Cast & Crew </a>
     </div>
   </div>
+
+  <episode-guide *ngIf="selectedPage == 'Episode Guide'"></episode-guide>
+  <crew-list *ngIf="selectedPage == 'Cast & Crew'"></crew-list>
 </div>

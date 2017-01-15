@@ -4,4 +4,10 @@ import {Component} from "@angular/core";
   templateUrl: './tv-show-details.component.html'
 })
 
-export class TVShowDetailsComponent {}
+export class TVShowDetailsComponent {
+  private selectedPage: string = 'Episode Guide';
+
+  private selectPage(page: string) {
+    this.selectedPage = page;
+  }
+}

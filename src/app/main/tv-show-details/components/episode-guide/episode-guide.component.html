@@ -1,0 +1,134 @@
+<div class="row">
+  <div class="large-2 columns">
+    <div class="seasons-menu">
+      <a (click)="selectSeason(1)" [ngClass]="{'selected': selectedSeason == 1}" class="small button expanded">
+        Season 1 <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+        <span> 12 Episodes </span>
+      </a>
+      <a (click)="selectSeason(2)" [ngClass]="{'selected': selectedSeason == 2}" class="small button expanded">
+        Season 2 <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+        <span> 12 Episodes </span>
+      </a>
+      <a (click)="selectSeason(3)" [ngClass]="{'selected': selectedSeason == 3}" class="small button expanded">
+        Season 3 <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+        <span> 12 Episodes </span>
+      </a>
+      <a (click)="selectSeason(4)" [ngClass]="{'selected': selectedSeason == 4}" class="small button expanded">
+        Season 4 <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+        <span> 12 Episodes </span>
+      </a>
+      <a (click)="selectSeason(5)" [ngClass]="{'selected': selectedSeason == 5}" class="small button expanded">
+        Season 5
+        <span> 12 Episodes </span>
+      </a>
+      <a (click)="selectSeason(6)" [ngClass]="{'selected': selectedSeason == 6}" class="small button expanded">
+        Season 6
+        <span> 12 Episodes </span>
+      </a>
+      <a (click)="selectSeason(7)" [ngClass]="{'selected': selectedSeason == 7}" class="small button expanded">
+        Season 7
+        <span> 12 Episodes </span>
+      </a>
+    </div>
+  </div>
+  <div class="large-10 columns">
+    <table class="episode-container">
+      <tr>
+        <td class="episode-number">
+          EPISODE
+          <span>01</span>
+        </td>
+        <td class="episode-information">
+          Days Gone Bye
+
+          <div class="air-date">
+          AIR DATE <span> Nov 1, 2010</span>
+          </div>
+
+          <div class="description">
+          Rick searches for his family after emerging from a coma into a world terrorized by the walking dead.
+          Morgan and Duane, whom he meets along the way, help teach Rick the new rules for survival.
+          </div>
+
+          <a class="tiny watched button">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Watched
+          </a>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="episode-number">
+          EPISODE
+          <span>02</span>
+        </td>
+        <td class="episode-information">
+          Guts
+
+          <div class="air-date">
+            AIR DATE <span> Nov 8, 2010</span>
+          </div>
+
+          <div class="description">
+            Rick unknowingly causes a group of survivors to be trapped by walkers. The group dynamic devolves from
+            accusations to violence, as Rick must confront an enemy far more dangerous than the undead.
+          </div>
+
+          <a class="tiny not-watched button">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            Not Watched
+          </a>
+        </td>
+      </tr>
+    </table>
+    <!--<div class="episode-container">-->
+      <!--<div class="row">-->
+        <!--<div class="pull-left episode-number">-->
+          <!--EPISODE-->
+          <!--<span>01</span>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="small-9 end">&ndash;&gt;-->
+          <!--<div class="episode-information">-->
+            <!--<div class="header">-->
+              <!--Days Gone Bye-->
+
+              <!--<div class="air-date">-->
+                <!--AIR DATE <span> Nov 1, 2010</span>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="description">-->
+              <!--Rick searches for his family after emerging from a coma into a world terrorized by the walking dead.-->
+              <!--Morgan and Duane, whom he meets along the way, help teach Rick the new rules for survival.-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div>-->
+            <!--<a class="tiny button"> Watched </a>-->
+          <!--</div>-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="tv-episode-container">-->
+      <!--<div class="row">-->
+        <!--<div class="large-10 columns">-->
+          <!--<div class="title">-->
+            <!--<span> Episode 02 |</span>-->
+            <!--Guts-->
+          <!--</div>-->
+
+          <!--<div class="description">-->
+            <!--Rick unknowingly causes a group of survivors to be trapped by walkers. The group dynamic devolves from-->
+            <!--accusations to violence, as Rick must confront an enemy far more dangerous than the undead.-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="large-2 columns options">-->
+          <!--<div class="">-->
+            <!--<a class="tiny expanded button"> Watched </a>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>
