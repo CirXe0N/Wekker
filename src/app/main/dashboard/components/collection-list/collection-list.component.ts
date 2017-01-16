@@ -3,7 +3,8 @@ import {tvShow, movie} from "./collection-list.interface";
 
 @Component({
   selector: 'collection-list',
-  templateUrl: './collection-list.component.html'
+  templateUrl: './collection-list.component.html',
+  styleUrls: ['./collection-list.component.sass']
 })
 
 export class CollectionListComponent implements OnInit {

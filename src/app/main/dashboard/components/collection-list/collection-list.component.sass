@@ -1,0 +1,101 @@
+#collection-container
+  display: inline-block
+  position: relative
+  background-color: rgba(255, 255, 255, 0.10)
+  height: 100%
+  width: 350px
+
+  @media screen and (max-width: 63.9375em)
+    width: 100%
+
+  .collection-search
+    position: absolute
+    bottom: 33px
+    width: 100%
+
+    input
+      font-size: 0.85rem
+      color: #afb1be
+      background-color: rgba(51, 51, 51, 0.5)
+      border: 1px solid #525252
+      box-shadow: none
+      outline: none
+      padding-left: 2rem
+
+      &::-webkit-input-placeholder
+        color: #525252
+
+    .search-icon
+      position: absolute
+      color: #525252
+      font-size: 1.2rem
+      left: 0.5rem
+      top: 0.6rem
+
+  .collection-selector
+    padding: 0.5rem
+
+    a.button
+      border: 1px solid #FFF
+      background-color: transparent
+      color: #FFF
+      margin-bottom: 0
+
+      &.selected
+        background-color: #FFFFFF
+        color: #333
+        cursor: default
+
+      &:hover
+        background-color: #FFFFFF
+        color: #333
+
+  .collection-list
+    list-style: none
+    margin: 0
+
+    li
+      padding: 0.8rem 0.5rem
+      border-bottom: 1px solid #333
+
+      &:hover
+        cursor: pointer
+        background-color: rgba(255, 255, 255, 0.12)
+
+    img
+      width: 65px
+      height: 95px
+
+    .item-information
+      position: relative
+      display: inline-block
+      color: #FFFFFF
+      vertical-align: top
+      height: 95px
+      min-width: 200px
+
+      .title
+        font-size: 1.1rem
+        line-height: 0.8rem
+        margin-bottom: 0.45rem
+        font-weight: 700
+
+      .badges
+        font-size: 0.7rem
+        position: absolute
+        bottom: 0
+
+        .badge
+          border-radius: 0
+          padding: 0.1rem 0.3rem
+          color: #FFF
+
+          &.success
+            background-color: #229b35
+
+      .movie-information, .tv-show-information, .status
+        font-size: 0.7rem
+        font-weight: 400
+
+        span
+          font-weight: 700

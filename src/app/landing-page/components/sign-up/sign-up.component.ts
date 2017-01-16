@@ -4,7 +4,8 @@ import {SignUpRequest} from "./sign-up.interface";
 
 @Component({
   selector: 'sign-up',
-  templateUrl: './sign-up.component.html'
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.sass']
 })
 
 export class SignUpComponent implements OnInit {

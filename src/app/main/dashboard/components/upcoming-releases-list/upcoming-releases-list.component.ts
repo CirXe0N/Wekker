@@ -4,7 +4,8 @@ import * as moment from "moment";
 
 @Component({
   selector: 'upcoming-releases-list',
-  templateUrl: './upcoming-releases-list.component.html'
+  templateUrl: './upcoming-releases-list.component.html',
+  styleUrls: ['./upcoming-releases-list.component.sass']
 })
 
 export class UpcomingReleasesListComponent implements OnInit {

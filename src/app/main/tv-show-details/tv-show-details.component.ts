@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
 
 @Component({
-  templateUrl: './tv-show-details.component.html'
+  templateUrl: './tv-show-details.component.html',
+  styleUrls: ['./tv-show-details.component.sass']
 })
 
 export class TVShowDetailsComponent {

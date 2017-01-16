@@ -4,7 +4,8 @@ import {ForgotPasswordRequest} from "./forgot-password.interface";
 
 @Component({
   selector: 'forgot-password',
-  templateUrl: './forgot-password.component.html'
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.sass']
 })
 
 export class ForgotPasswordComponent implements OnInit {

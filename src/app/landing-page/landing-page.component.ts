@@ -2,6 +2,7 @@ import {Component, OnInit, trigger, transition, style, animate} from '@angular/c
 
 @Component({
   templateUrl: './landing-page.component.html',
+  styleUrls: ['./landing-page.component.sass'],
   animations: [
     trigger("dynamicText", [
       transition("* => *", [

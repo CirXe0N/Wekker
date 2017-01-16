@@ -1,39 +1,41 @@
-<!-- Container Title-->
-<div class="input-container-title">
-  Welcome back!
-</div>
-
-<!-- Container Fields-->
-<div [formGroup]="form" (keyup.enter)="doLoginRequest(form)" class="input-container-fields">
-
-  <!-- Field: E-mail Address -->
-  <div class="input-field">
-    <label>E-mail Address</label>
-    <input type="email" placeholder="E-mail Address" formControlName="email_address" maxlength="35">
-    <span *ngIf="form.get('email_address').touched && form.get('email_address').valid" class="fa fa-check success-validation"></span>
+<div id="login">
+  <!-- Container Title-->
+  <div class="input-container-title">
+    Welcome back!
   </div>
 
-  <!-- Field: Password -->
-  <div class="input-field">
-    <label>Password</label>
-    <input type="password" placeholder="Password" formControlName="password">
-    <span *ngIf="form.get('password').touched && form.get('password').valid" class="fa fa-check success-validation"></span>
-  </div>
-</div>
+  <!-- Container Fields-->
+  <div [formGroup]="form" (keyup.enter)="doLoginRequest(form)" class="input-container-fields">
 
-<!-- Container Submit Button-->
-<div class="input-container-button">
-
-  <!-- Active button with functionality to do a request -->
-  <a *ngIf="!isRequesting" (click)="doLoginRequest(form)" class="medium hollow expanded button">Log In</a>
-
-  <!-- Disabled button during a request -->
-  <a *ngIf="isRequesting" class="medium hollow expanded button is-active">
-    <div class="loading">
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
+    <!-- Field: E-mail Address -->
+    <div class="input-field">
+      <label>E-mail Address</label>
+      <input type="email" placeholder="E-mail Address" formControlName="email_address" maxlength="35">
+      <span *ngIf="form.get('email_address').touched && form.get('email_address').valid" class="fa fa-check success-validation"></span>
     </div>
-  </a>
+
+    <!-- Field: Password -->
+    <div class="input-field">
+      <label>Password</label>
+      <input type="password" placeholder="Password" formControlName="password">
+      <span *ngIf="form.get('password').touched && form.get('password').valid" class="fa fa-check success-validation"></span>
+    </div>
+  </div>
+
+  <!-- Container Submit Button-->
+  <div class="input-container-button">
+
+    <!-- Active button with functionality to do a request -->
+    <a *ngIf="!isRequesting" (click)="doLoginRequest(form)" class="medium hollow expanded button">Log In</a>
+
+    <!-- Disabled button during a request -->
+    <a *ngIf="isRequesting" class="medium hollow expanded button is-active">
+      <div class="loading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+      </div>
+    </a>
+  </div>
 </div>
