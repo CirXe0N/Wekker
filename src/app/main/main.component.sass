@@ -19,27 +19,80 @@
     @media screen and (max-width: 63.9375em)
       background-color: #323335
 
-  .collection-toggle-button
-    position: absolute
-    font-size: 1.4rem
-    height: 100%
-    left: 10px
-    color: #afb1be
+    .collection-toggle-button
+      position: absolute
+      font-size: 1.4rem
+      height: 100%
+      left: 10px
+      color: #afb1be
 
-    &:hover
+      &:hover
+        color: #FFF
+        cursor: pointer
+
+      &.active
+        color: #FFF
+
+    .wekker-nav-title
       color: #FFF
-      cursor: pointer
+      font-size: 1.65rem
+      font-weight: 900
+      letter-spacing: 0.55rem
+      line-height: 2.1rem
+      text-align: center
 
-    &.active
+    .profile-container
+      position: absolute
+      font-size: 0.9rem
+      right: 0.6rem
+      top: 0.5rem
       color: #FFF
+      padding-right: 0.4rem
 
-  .wekker-nav-title
-    color: #FFF
-    font-size: 1.65rem
-    font-weight: 900
-    letter-spacing: 0.55rem
-    line-height: 2.1rem
-    text-align: center
+      .profile-image
+        display: inline-block
+
+        img
+          height: 30px
+          margin-right: 5px
+
+      &:hover
+        opacity: 0.7
+        cursor: pointer
+
+    .profile-menu-container
+      position: absolute
+      top: 100%
+      right: 0
+      opacity: 0
+      padding: 0.6rem 0 0.2rem 0
+      background-color: rgba(0, 0, 0, 0.25)
+      border-bottom: 1px solid #614126
+      border-top: 1px solid #614126
+
+      @media screen and (max-width: 63.9375em)
+        background-color: #323335
+
+      &.open-menu
+        transition: 0.2s
+        opacity: 100
+
+      ul
+        list-style: none
+        color: #FFF
+        font-size: 0.85rem
+        background-color: transparent
+        margin: 0
+        text-align: right
+
+        li
+          margin-bottom: 0.25rem
+          padding: 0.2rem 1rem 0.2rem 1rem
+
+          &:hover
+            background-color: rgba(255, 255, 255, 0.1)
+            cursor: pointer
+
 
   .content-container
     position: fixed

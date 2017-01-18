@@ -6,8 +6,29 @@
       <div (click)="toggleCollectionSidebar()" class="hide-for-large collection-toggle-button" [ngClass]="{'active': isActiveCollectionSidebar}">
         <i class="fa fa-film fa-fw" aria-hidden="true"></i>
       </div>
+
+      <div (click)="toggleProfileMenu()" class="profile-container">
+        <div class="profile-image">
+          <img src="../../assets/images/profile-image-placeholder.jpg">
+        </div>
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </div>
+
       <div class="wekker-nav-title">
         WEKKER
+      </div>
+
+      <div [ngClass]="{'open-menu': isActiveProfileMenu}" class="profile-menu-container">
+        <ul>
+          <li>
+            Settings
+            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+          </li>
+          <li (click)="logout()">
+            Logout
+            <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+          </li>
+        </ul>
       </div>
     </div>
 
