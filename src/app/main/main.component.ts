@@ -12,15 +12,15 @@ export class MainComponent {
 
   constructor(private router: Router) {}
 
-  private toggleCollectionSidebar() {
+  private toggleCollectionSidebar(): void {
     this.isActiveCollectionSidebar = !this.isActiveCollectionSidebar;
   }
 
-  private toggleProfileMenu() {
+  private toggleProfileMenu(): void {
     this.isActiveProfileMenu = !this.isActiveProfileMenu;
   }
 
-  private logout() {
+  private logout(): void {
     localStorage.removeItem('WekkerAccessToken');
     this.router.navigate(['/home']);
   }
