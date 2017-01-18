@@ -1,5 +1,5 @@
 <div id="tv-shows-details">
-  <div class="row">
+  <div class="larger row">
     <div class="large-2 columns end">
       <a [routerLink]="['/main']" class="small expanded button back-button">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -7,7 +7,7 @@
       </a>
     </div>
   </div>
-  <div class="row">
+  <div class="larger row">
     <div class="large-9 columns">
       <div class="media-object stack-for-small">
         <div class="media-object-section">
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="larger row">
     <div class="section-selector large-push-9 large-3 columns">
       <a (click)="selectPage('Episode Guide')" [ngClass]="{'selected': selectedPage == 'Episode Guide'}" class="small small-6 column button"> Episodes Guide </a>
       <a (click)="selectPage('Cast & Crew')" [ngClass]="{'selected': selectedPage == 'Cast & Crew'}" class="small small-6 column button"> Cast & Crew </a>
