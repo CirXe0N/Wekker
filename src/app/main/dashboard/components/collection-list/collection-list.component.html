@@ -1,4 +1,9 @@
 <div id="collection-container">
+  <div  class="collection-search">
+    <i class="fa fa-search search-icon" aria-hidden="true"></i>
+    <input type="text" [(ngModel)]="searchInput" placeholder="Search for a TV Show or Movie">
+  </div>
+
   <div class="collection-selector">
     <div class="row">
       <a (click)="selectTvShowCollection()" [ngClass]="{'selected': selectedListType == 'TV Shows'}" class="small small-6 column button"> TV Shows </a>
@@ -52,9 +57,4 @@
       </div>
     </li>
   </ul>
-  <div  class="collection-search">
-    <i class="fa fa-search search-icon" aria-hidden="true"></i>
-    <input *ngIf="selectedListType == 'TV Shows'" type="text" [(ngModel)]="searchInput" placeholder="Search your TV Show collection">
-    <input *ngIf="selectedListType == 'Movies'" type="text" [(ngModel)]="searchInput" placeholder="Search your Movie collection">
-  </div>
 </div>
