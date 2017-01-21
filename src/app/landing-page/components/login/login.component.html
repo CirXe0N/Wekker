@@ -10,14 +10,14 @@
     <!-- Field: E-mail Address -->
     <div class="input-field">
       <label>E-mail Address</label>
-      <input type="email" placeholder="E-mail Address" formControlName="email_address" maxlength="35">
+      <input type="email" placeholder="E-mail Address" formControlName="email_address" (keydown)="resetRequestError()" maxlength="35">
       <span *ngIf="form.get('email_address').touched && form.get('email_address').valid" class="fa fa-check success-validation"></span>
     </div>
 
     <!-- Field: Password -->
     <div class="input-field">
       <label>Password</label>
-      <input type="password" placeholder="Password" formControlName="password">
+      <input type="password" placeholder="Password" formControlName="password" (keydown)="resetRequestError()">
       <span *ngIf="form.get('password').touched && form.get('password').valid" class="fa fa-check success-validation"></span>
     </div>
   </div>
@@ -37,5 +37,10 @@
         <div class="rect4"></div>
       </div>
     </a>
+  </div>
+
+  <!-- Request Error Messages -->
+  <div *ngIf="requestError" class="alert callout">
+    Your e-mail address or/and password are incorrect.
   </div>
 </div>

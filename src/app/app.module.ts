@@ -22,6 +22,12 @@ import {TVShowDetailsComponent} from "./main/tv-show-details/tv-show-details.com
 import {MovieDetailsComponent} from "./main/movie-details/movie-details-component";
 import {EpisodeGuideComponent} from "./main/tv-show-details/components/episode-guide/episode-guide.component";
 import {CrewListComponent} from "./main/tv-show-details/components/crew-list/crew-list.component";
+import {SettingsService} from "../services/settings/settings.service";
+import {WekkerAPIService} from "../services/wekker-api/wekker-api.service";
+import {UtilitiesService} from "../services/utilities/utilities.service";
+import {AuthenticationGuard} from "../guards/authentication.guard";
+import {AccountVerificationComponent} from "./account-verification/account-verification.component";
+import {AccountRecoveryComponent} from "./account-recovery/account-recovery.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +47,9 @@ import {CrewListComponent} from "./main/tv-show-details/components/crew-list/cre
     MovieDetailsComponent,
     TVShowDetailsComponent,
     EpisodeGuideComponent,
-    CrewListComponent
+    CrewListComponent,
+    AccountVerificationComponent,
+    AccountRecoveryComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -50,7 +58,12 @@ import {CrewListComponent} from "./main/tv-show-details/components/crew-list/cre
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    SettingsService,
+    UtilitiesService,
+    WekkerAPIService,
+    AuthenticationGuard
+  ],
   bootstrap: [AppComponent]
 })
 

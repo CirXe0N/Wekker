@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {ForgotPasswordRequest} from "./forgot-password.interface";
+import {WekkerAPIService} from "../../../../services/wekker-api/wekker-api.service";
 
 @Component({
   selector: 'forgot-password',
@@ -13,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
   private isSuccessfulRequest: boolean = false;
   private isRequesting: boolean = false;
 
-  constructor() {}
+  constructor(private wekker: WekkerAPIService) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -22,12 +23,17 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   private doForgotPasswordRequest({value, valid}: {value: ForgotPasswordRequest, valid: boolean}) {
-    this.isRequesting = true;
-    if(valid) {
-      console.log(value);
+    this.isSuccessfulRequest = false;
 
-      // Successful Request
-      this.isSuccessfulRequest = true;
+    if(valid) {
+      this.isRequesting = true;
+      this.wekker.doPostRequest('/account/recovery/', value, true)
+        .subscribe(
+          res => {
+            this.isSuccessfulRequest = true;
+            this.isRequesting = false;
+          }
+        );
     }
   }
 }

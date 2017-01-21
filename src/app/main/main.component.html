@@ -37,6 +37,16 @@
 
     <!--CONTENT CONTAINER-->
     <div class="content-container" [ngClass]="{'open-menu': isActiveCollectionSidebar}">
+
+      <!--BANNER FOR UNVERIFIED USERS-->
+      <div *ngIf="!user?.is_verified" class="larger row columns">
+        <div class="alert callout">
+          <div>Your account is <strong>not</strong> verified. Check your inbox.</div>
+          <div *ngIf="!isVerificationEmailSent">If you have not received an e-mail, <a (click)="resendVerificationEmail()">click here</a> to resend one.</div>
+          <div *ngIf="isVerificationEmailSent">A verification e-mail has been sent!</div>
+        </div>
+      </div>
+
       <router-outlet></router-outlet>
     </div>
   </div>

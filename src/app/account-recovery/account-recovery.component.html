@@ -1,0 +1,69 @@
+<div id="account-recovery">
+  <div class="background-layer">
+
+    <!--NAVIGATION BAR-->
+    <div class="top-bar">
+      <div class="wekker-nav-title">
+        WEKKER
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 large-centered column">
+        <div class="show-for-large input-container-top-padding"></div>
+
+        <div class="input-container">
+          <!-- Container Title-->
+          <div class="input-container-title">
+            Reset Password
+          </div>
+
+          <!-- Container Fields-->
+          <div [formGroup]="form" (keyup.enter)="doChangePasswordRequest(form)" class="input-container-fields">
+
+            <!-- Field: Password -->
+            <div class="input-field">
+              <label>Password</label>
+              <input [(ngModel)]="request.password" type="password" placeholder="Password" formControlName="password" (keydown)="resetValidation()">
+              <span *ngIf="form.get('password').touched && form.get('password').valid" class="fa fa-check success-validation"></span>
+            </div>
+
+            <!-- Field: Password -->
+            <div class="input-field">
+              <label>Confirm Password</label>
+              <input type="password" placeholder="Repeat Password" formControlName="repeat_password" (keydown)="resetValidation()">
+              <span *ngIf="form.get('repeat_password').touched && form.valid" class="fa fa-check success-validation"></span>
+            </div>
+          </div>
+
+          <!-- Container Submit Button-->
+          <div class="input-container-button">
+
+            <!-- Active button with functionality to do a request -->
+            <a *ngIf="!isRequesting" (click)="doChangePasswordRequest(form)" class="medium hollow expanded button">Reset Password</a>
+
+            <!-- Disabled button during a request -->
+            <a *ngIf="isRequesting" class="medium hollow expanded button is-active">
+              <div class="loading">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Request Error Messages -->
+          <div *ngIf="displayRequestError" class="alert callout">
+            Your link is expired. Request a new reset password e-mail.
+          </div>
+
+          <!-- Request Error Messages -->
+          <div *ngIf="displayMatchingPasswordError" class="alert callout">
+            The password and the confirm password do not match.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
