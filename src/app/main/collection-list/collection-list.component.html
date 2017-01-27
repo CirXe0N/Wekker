@@ -1,7 +1,8 @@
 <div id="collection-container">
-  <div  class="collection-search">
-    <i class="fa fa-search search-icon" aria-hidden="true"></i>
-    <input type="text" [(ngModel)]="searchInput" placeholder="Search for a TV Show or Movie">
+  <div class="title-container">
+    <div class="title">
+      My Collection
+    </div>
   </div>
 
   <div class="collection-selector">
@@ -12,7 +13,7 @@
   </div>
 
   <ul class="collection-list">
-    <li *ngFor="let item of collectionList | search: searchInput" [routerLink]="['/main/tv-shows/' + item.id]">
+    <li *ngFor="let item of collectionList" [routerLink]="['/main/tv-shows/' + item.id]">
       <img src="{{item.poster_url}}">
       <div class="item-information">
         <div class="title"> {{item.title}} </div>

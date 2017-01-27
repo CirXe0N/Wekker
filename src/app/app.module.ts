@@ -11,8 +11,7 @@ import {LoginComponent} from "./landing-page/components/login/login.component";
 import {SignUpComponent} from "./landing-page/components/sign-up/sign-up.component";
 import {ForgotPasswordComponent} from "./landing-page/components/forgot-password/forgot-password.component";
 import {DashboardComponent} from "./main/dashboard/dashboard.component";
-import {CollectionListComponent} from "./main/dashboard/components/collection-list/collection-list.component";
-import {CollectionListSearchPipe} from "./main/dashboard/components/collection-list/pipes/collection-list-search.pipe";
+import {CollectionListComponent} from "./main/collection-list/collection-list.component";
 import {UpcomingReleasesListComponent} from "./main/dashboard/components/upcoming-releases-list/upcoming-releases-list.component";
 import {StatisticCardComponent} from "./main/dashboard/components/statistic-card/statistic-card.component";
 import {WatchListComponent} from "./main/dashboard/components/watch-list/watch-list.component";
@@ -28,6 +27,8 @@ import {UtilitiesService} from "../services/utilities/utilities.service";
 import {AuthenticationGuard} from "../guards/authentication.guard";
 import {AccountVerificationComponent} from "./account-verification/account-verification.component";
 import {AccountRecoveryComponent} from "./account-recovery/account-recovery.component";
+import {SearchListComponent} from "./main/search-list/search-list.component";
+import {DatesService} from "../services/dates/dates.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {AccountRecoveryComponent} from "./account-recovery/account-recovery.comp
     MainComponent,
     DashboardComponent,
     CollectionListComponent,
-    CollectionListSearchPipe,
+    SearchListComponent,
     UpcomingReleasesListComponent,
     StatisticCardComponent,
     WatchListComponent,
@@ -62,6 +63,7 @@ import {AccountRecoveryComponent} from "./account-recovery/account-recovery.comp
     SettingsService,
     UtilitiesService,
     WekkerAPIService,
+    DatesService,
     AuthenticationGuard
   ],
   bootstrap: [AppComponent]

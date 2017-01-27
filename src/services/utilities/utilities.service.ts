@@ -8,7 +8,7 @@ import {WekkerAPIService} from "../wekker-api/wekker-api.service";
 export class UtilitiesService {
   private user: ReplaySubject<User> = new ReplaySubject<User>();
 
-  constructor(private router: Router, private wekker: WekkerAPIService) {}
+  constructor(private router: Router) {}
 
   public setUser(user: User): void {
     this.user.next(user);

@@ -1,0 +1,39 @@
+<div id="search-container">
+  <div class="title-container">
+    <div class="title">
+      Search
+    </div>
+  </div>
+
+  <div class="search-input-container">
+    <i class="fa fa-search search-icon" aria-hidden="true"></i>
+    <input #searchInputField type="text" (keyup)="doSearchRequest(searchInputField.value)" placeholder="Search for a TV Show or Movie">
+  </div>
+
+  <div class="search-results-container">
+    <div *ngIf="searchList.length == 0" class="empty-list">
+      <div><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></div>
+      <div>Nothing to Search.</div>
+    </div>
+    <table *ngIf="searchList.length > 0" class="search-list">
+      <tr *ngFor="let item of searchList" [routerLink]="['/main/tv-shows/' + item.tv_show_id]">
+        <td>
+          {{item.name}} <span *ngIf="item.first_air_date">({{ dates.convertToYear(item.first_air_date) }})</span>
+        </td>
+        <td class="badges-cell">
+          <div class="badge"> TV SHOW </div>
+        </td>
+      </tr>
+    </table>
+
+    <!--<ul *ngIf="searchList.length > 0" class="search-list">-->
+      <!--<li *ngFor="let item of searchList" [routerLink]="['/main/tv-shows/' + item.id]">-->
+        <!--{{item.name}}-->
+        <!--<span *ngIf="item.first_air_date">({{item.first_air_date}})</span>-->
+        <!--<div class="float-right">-->
+          <!---->
+        <!--</div>-->
+      <!--</li>-->
+    <!--</ul>-->
+  </div>
+</div>

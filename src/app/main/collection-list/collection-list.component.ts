@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {tvShow, movie} from "./collection-list.interface";
+import {WekkerAPIService} from "../../../services/wekker-api/wekker-api.service";
 
 @Component({
   selector: 'collection-list',
@@ -8,13 +9,12 @@ import {tvShow, movie} from "./collection-list.interface";
 })
 
 export class CollectionListComponent implements OnInit {
-  private searchInput: string = '';
   private selectedListType: string = 'TV Shows';
   private collectionList: tvShow[] | movie[] = [];
   private tvShowList: tvShow[] =[];
   private movieList: movie[] = [];
 
-  constructor() {}
+  constructor(private wekker: WekkerAPIService) {}
 
   ngOnInit() {
     this.doGetTvShowCollection();
@@ -23,15 +23,23 @@ export class CollectionListComponent implements OnInit {
   }
 
   private selectTvShowCollection() {
-    this.searchInput = '';
     this.selectedListType = 'TV Shows';
     this.collectionList =  this.tvShowList;
   }
 
   private selectMovieCollection() {
-    this.searchInput = '';
     this.selectedListType = 'Movies';
     this.collectionList =  this.movieList;
+  }
+
+  private doSearchRequest(query: string) {
+    this.wekker.doGetRequest('/tv-shows/?query=' + query)
+      .debounceTime(5000)
+      .subscribe(
+        res => {
+          console.log(res)
+        }
+    )
   }
 
   private doGetTvShowCollection() {

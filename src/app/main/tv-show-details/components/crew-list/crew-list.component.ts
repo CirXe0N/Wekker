@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
+import {CrewMember, CastMember} from "../../tv-show-details.interface";
 
 @Component({
   selector: 'crew-list',
@@ -6,4 +7,7 @@ import {Component} from "@angular/core";
   styleUrls: ['./crew-list.component.sass']
 })
 
-export class CrewListComponent {}
+export class CrewListComponent {
+  @Input() crewMembers: CrewMember[] = [];
+  @Input() castMembers: CastMember[] = [];
+}

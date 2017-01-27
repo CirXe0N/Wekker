@@ -12,32 +12,53 @@
       <div class="media-object stack-for-small">
         <div class="media-object-section">
           <div class="thumbnail hide-for-small-only">
-            <img src="http://www.cineparadise.com/wp-content/uploads/2014/05/final-season-lost-poster.jpg">
+            <img *ngIf="tvShow?.poster" src="{{ settings.getEnvVariable('API_ENDPOINT') + tvShow?.poster }}">
+            <img *ngIf="!tvShow?.poster" src="../../../assets/images/poster-placeholder.jpg">
           </div>
         </div>
         <div class="media-object-section">
           <div class="information-container columns">
             <div class="row">
-              <div class="title">The Walking Dead</div>
+              <div class="title">{{ tvShow?.name }}</div>
             </div>
             <div class="row">
-              <div class="information">PREMIERED <span>Nov 1, 2010</span></div>
-              <div class="information">EPISODE RUNTIME <span>42 mins</span></div>
-              <div class="information">COUNTRY <span>United States</span></div>
-              <div class="information">LANGUAGE <span>English</span></div>
-              <div class="information">GENRES <span>Drama, Action, Adventure</span></div>
+              <div class="information">PREMIERED
+                <span *ngIf="!tvShow?.first_air_date"> -- </span>
+                <span *ngIf="tvShow?.first_air_date">{{ dates.convertToShortDate(tvShow?.first_air_date) }}</span>
+              </div>
+              <div class="information">EPISODE RUNTIME
+                <span *ngIf="!tvShow?.episode_run_time"> -- </span>
+                <span *ngIf="tvShow?.episode_run_time"> {{ tvShow?.episode_run_time }} mins</span>
+              </div>
+              <div class="information">COUNTRY
+                <span *ngIf="!tvShow?.origin_country"> -- </span>
+                <span *ngIf="tvShow?.origin_country"> {{ tvShow?.origin_country }} </span>
+              </div>
+              <div class="information">LANGUAGE
+                <span *ngIf="!tvShow?.language"> -- </span>
+                <span *ngIf="tvShow?.language"> {{ tvShow?.language }} </span>
+              </div>
+              <div class="information">GENRES
+                <span *ngIf="!tvShow?.genres"> -- </span>
+                <span *ngIf="tvShow?.genres">
+                  <span *ngIf="tvShow?.genres.length == 0"> -- </span>
+                  <span *ngFor="let genre of tvShow?.genres; let last=last">
+                    <span>
+                      {{ genre.name }}<span *ngIf="!last">,</span>
+                    </span>
+                  </span>
+                </span>
+              </div>
             </div>
             <div class="row">
               <div class="description">
                 DESCRIPTION
-                <span>
-                The world we knew is gone. An epidemic of apocalyptic proportions has swept the globe causing the dead to rise
-                and feed on the living. In a matter of months society has crumbled. In a world ruled by the dead, we are forced
-                to finally start living. Based on a comic book series of the same name by Robert Kirkman, this AMC project
-                focuses on the world after a zombie apocalypse. The series follows a police officer, Rick Grimes, who wakes up
-                from a coma to find the world ravaged with zombies. Looking for his family, he and a group of survivors attempt
-                to battle against the zombies in order to stay alive.
-              </span>
+                <span *ngIf="!tvShow?.overview">
+                  No description available at this moment.
+                </span>
+                <span *ngIf="tvShow?.overview">
+                  {{ tvShow?.overview}}
+                </span>
               </div>
             </div>
           </div>
@@ -57,6 +78,6 @@
     </div>
   </div>
 
-  <episode-guide *ngIf="selectedPage == 'Episode Guide'"></episode-guide>
+  <episode-guide *ngIf="selectedPage == 'Episode Guide'" [seasons]="tvShow?.seasons"></episode-guide>
   <crew-list *ngIf="selectedPage == 'Cast & Crew'"></crew-list>
 </div>

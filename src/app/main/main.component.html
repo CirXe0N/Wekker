@@ -3,8 +3,12 @@
 
     <!--NAVIGATION BAR-->
     <div class="top-bar">
-      <div (click)="toggleCollectionSidebar()" class="hide-for-large collection-toggle-button" [ngClass]="{'active': isActiveCollectionSidebar}">
+      <div (click)="openCollectionSidebar()" class="collection-toggle-button" [ngClass]="{'active': isActiveCollectionSidebar}">
         <i class="fa fa-film fa-fw" aria-hidden="true"></i>
+      </div>
+
+      <div (click)="openSearchSidebar()" class="search-toggle-button" [ngClass]="{'active': isActiveSearchSidebar}">
+        <i class="fa fa-search fa-fw" aria-hidden="true"></i>
       </div>
 
       <div (click)="toggleProfileMenu()" class="profile-container">
@@ -35,8 +39,11 @@
     <!--COLLECTION LIST-->
     <collection-list [ngClass]="{'open-menu': isActiveCollectionSidebar}"></collection-list>
 
+    <!--SEARCH LIST-->
+    <search-list [ngClass]="{'open-menu': isActiveSearchSidebar}"></search-list>
+
     <!--CONTENT CONTAINER-->
-    <div class="content-container" [ngClass]="{'open-menu': isActiveCollectionSidebar}">
+    <div class="content-container" [ngClass]="{'open-menu': isActiveCollectionSidebar || isActiveSearchSidebar}">
 
       <!--BANNER FOR UNVERIFIED USERS-->
       <div *ngIf="!user?.is_verified" class="larger row columns">

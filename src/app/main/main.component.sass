@@ -33,6 +33,20 @@
       &.active
         color: #FFF
 
+    .search-toggle-button
+      position: absolute
+      font-size: 1.4rem
+      height: 100%
+      left: 3rem
+      color: #afb1be
+
+      &:hover
+        color: #FFF
+        cursor: pointer
+
+      &.active
+        color: #FFF
+
     .wekker-nav-title
       color: #FFF
       font-size: 1.65rem
@@ -118,13 +132,30 @@
     transition: 0.5s
     height: 100%
     z-index: 9999
+    margin-left: -100%
+    width: 100%
 
-    @media screen and (max-width: 63.9375em)
-      margin-left: -100%
-      width: 100%
+    &.open-menu
+      margin-left: 0
 
-      &.open-menu
-        margin-left: 0
+    //@media screen and (max-width: 63.9375em)
+    //  margin-left: -100%
+    //  width: 100%
+    //
+    //  &.open-menu
+    //    margin-left: 0
+
+
+  search-list
+    position: relative
+    transition: 0.5s
+    height: 100%
+    z-index: 9000
+    margin-left: -100%
+    overflow-y: scroll
+
+    &.open-menu
+      margin-left: 0
 
   .callout
     font-size: 0.8rem

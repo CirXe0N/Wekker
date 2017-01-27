@@ -1,0 +1,107 @@
+#search-container
+  display: inline-block
+  position: relative
+  background-color: rgba(255, 255, 255, 0.10)
+  height: 100%
+  width: 350px
+
+  @media screen and (max-width: 63.9375em)
+    width: 100%
+
+  .title-container
+    padding: 0.5rem
+
+    .title
+      width: 100%
+      background-color: rgba(255, 255, 255, 0.1)
+      text-align: center
+      color: #FFFFFF
+      padding: 0.4rem
+      font-size: 0.9rem
+      letter-spacing: 0.3rem
+
+  .search-input-container
+    width: 100%
+    padding: 0 0.5rem 0.5rem 0.5rem
+
+    input
+      font-size: 0.8rem
+      color: #afb1be
+      background-color: rgba(51, 51, 51, 0.5)
+      border: 1px solid #828282
+      box-shadow: none
+      outline: none
+      padding-left: 2rem
+      margin-bottom: 0
+
+      &::-webkit-input-placeholder
+        color: #828282
+
+    .search-icon
+      position: absolute
+      color: #828282
+      font-size: 1.2rem
+      left: 1rem
+      top: 3.75rem
+
+  .search-results-container
+    display: block
+    height: 100%
+    overflow-y: auto
+
+    .empty-list
+      position: absolute
+      text-align: center
+      width: 100%
+      top: 45%
+      font-size: 0.9rem
+      color: #828282
+
+
+    .search-list
+      border: none
+      border-collapse: collapse
+      color: #FFF
+      font-size: 0.85rem
+      background-color: transparent
+
+      tr, tbody
+        border: none
+        background-color: transparent
+
+      tr
+        border-bottom: 1px solid #333
+
+      tr:hover
+        background-color: rgba(255, 255, 255, 0.1)
+        cursor: pointer
+
+      td.badges-cell
+        width: 5rem
+
+        .badge
+          background-color: rgba(255, 255, 255, 0.1)
+          border-radius: 0
+          padding: 0.1rem 0.3rem
+          color: #FFF
+          font-size: 0.6rem
+          letter-spacing: 0.1rem
+
+
+    ul
+      list-style: none
+      color: #FFF
+      font-size: 0.85rem
+      background-color: transparent
+      margin: 0
+      text-align: left
+
+      li
+        padding: 0.5rem
+        border-bottom: 1px solid #333
+        font-size: 0.8rem
+
+        &:hover
+          background-color: rgba(255, 255, 255, 0.1)
+          cursor: pointer
+

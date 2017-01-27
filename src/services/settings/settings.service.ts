@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class SettingsService {
+
   public getEnvVariable(value: string): string {
     let hostname = window.location.hostname;
     let data = {};

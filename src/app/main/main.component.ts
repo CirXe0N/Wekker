@@ -10,7 +10,8 @@ import {User} from "../../services/utilities/utilities.interface";
 })
 
 export class MainComponent implements OnInit {
-  private isActiveCollectionSidebar: boolean= false;
+  private isActiveCollectionSidebar: boolean = false;
+  private isActiveSearchSidebar: boolean = false;
   private isActiveProfileMenu: boolean = false;
   private isVerificationEmailSent: boolean = false;
   private user: User;
@@ -23,6 +24,20 @@ export class MainComponent implements OnInit {
 
   private toggleCollectionSidebar(): void {
     this.isActiveCollectionSidebar = !this.isActiveCollectionSidebar;
+  }
+
+  private toggleSearchSidebar(): void {
+    this.isActiveSearchSidebar = !this.isActiveSearchSidebar;
+  }
+
+  private openCollectionSidebar(): void {
+    this.isActiveCollectionSidebar = true;
+    this.isActiveSearchSidebar = false;
+  }
+
+  private openSearchSidebar(): void {
+    this.isActiveCollectionSidebar = false;
+    this.isActiveSearchSidebar = true;
   }
 
   private toggleProfileMenu(): void {
