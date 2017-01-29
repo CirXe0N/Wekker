@@ -1,4 +1,5 @@
 export interface TVShow {
+  tv_show_id: string;
   name: string;
   overview: string;
   status: string;
@@ -10,13 +11,10 @@ export interface TVShow {
   genres: Genre[];
   language: string;
   type: string;
+  is_collection_item: boolean;
   seasons: Season[];
   cast: CastMember[];
   crew: CrewMember[];
-}
-
-interface Genre {
-  name: string;
 }
 
 export interface Season {
@@ -26,7 +24,8 @@ export interface Season {
   is_watched: boolean;
 }
 
-interface Episode {
+export interface Episode {
+  episode_id: string;
   name: string;
   episode_number: number;
   is_watched: boolean;
@@ -41,3 +40,8 @@ export interface CrewMember {
   name: string;
   job_title: string;
 }
+
+interface Genre {
+  name: string;
+}
+

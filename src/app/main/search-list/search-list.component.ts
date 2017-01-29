@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {WekkerAPIService} from "../../../services/wekker-api/wekker-api.service";
 import {DatesService} from "../../../services/dates/dates.service";
 
@@ -10,6 +10,9 @@ import {DatesService} from "../../../services/dates/dates.service";
 
 export class SearchListComponent implements OnInit {
   private searchList: any[] = [];
+
+  @Input() isOpen: boolean = false;
+  @Input() isToggled: boolean = false;
 
   constructor(private wekker: WekkerAPIService, private dates: DatesService) {}
 

@@ -1,6 +1,8 @@
 import {Component, Input, OnChanges} from "@angular/core";
-import {Season} from "../../tv-show-details.interface";
+import {Season, Episode} from "../../tv-show-details.interface";
 import {DatesService} from "../../../../../services/dates/dates.service";
+import {WekkerAPIService} from "../../../../../services/wekker-api/wekker-api.service";
+import {UtilitiesService} from "../../../../../services/utilities/utilities.service";
 
 @Component({
   selector: 'episode-guide',
@@ -14,7 +16,7 @@ export class EpisodeGuideComponent implements OnChanges {
 
   @Input() seasons: Season[];
 
-  constructor(private dates: DatesService) {}
+  constructor(private dates: DatesService, private wekker: WekkerAPIService, private utilities: UtilitiesService) {}
 
   ngOnChanges(): void {
     if(this.seasons && this.seasons.length > 0) {
@@ -29,6 +31,18 @@ export class EpisodeGuideComponent implements OnChanges {
   private selectSeason(season: Season): void {
     this.selectedSeason = season;
     this.selectedSeasonNumber = season.season_number;
+  }
+
+  private doUpdateWatchedEpisodeRequest(episode: Episode) {
+    let request = {
+      is_watched: !episode.is_watched
+    };
+
+    this.wekker.doPutRequest('/tv-show-episodes/' + episode.episode_id + '/', request)
+      .subscribe(res => {
+        episode.is_watched = res.is_watched;
+        this.utilities.getTVShowCollection();
+      });
   }
 
   private checkWatchedStatus(season: Season): boolean {

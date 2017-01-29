@@ -3,13 +3,26 @@
 
     <!--NAVIGATION BAR-->
     <div class="top-bar">
-      <div (click)="openCollectionSidebar()" class="collection-toggle-button" [ngClass]="{'active': isActiveCollectionSidebar}">
+
+      <!--DESKTOP-->
+      <div (click)="openCollectionSidebar()" class="show-for-large collection-toggle-button" [ngClass]="{'active': isOpenCollectionSidebar}">
         <i class="fa fa-film fa-fw" aria-hidden="true"></i>
       </div>
 
-      <div (click)="openSearchSidebar()" class="search-toggle-button" [ngClass]="{'active': isActiveSearchSidebar}">
+      <div (click)="openSearchSidebar()" class="show-for-large search-toggle-button" [ngClass]="{'active': isOpenSearchSidebar}">
         <i class="fa fa-search fa-fw" aria-hidden="true"></i>
       </div>
+
+      <!--MOBILE-->
+      <div (click)="toggleCollectionSidebar()" class="hide-for-large collection-toggle-button" [ngClass]="{'active': isToggledCollectionSidebar}">
+        <i class="fa fa-film fa-fw" aria-hidden="true"></i>
+      </div>
+
+      <div (click)="toggleSearchSidebar()" class="hide-for-large search-toggle-button" [ngClass]="{'active': isToggledSearchSidebar}">
+        <i class="fa fa-search fa-fw" aria-hidden="true"></i>
+      </div>
+
+
 
       <div (click)="toggleProfileMenu()" class="profile-container">
         <div class="profile-image">
@@ -37,13 +50,13 @@
     </div>
 
     <!--COLLECTION LIST-->
-    <collection-list [ngClass]="{'open-menu': isActiveCollectionSidebar}"></collection-list>
+    <collection-list [isOpen]="isOpenCollectionSidebar" [isToggled]="isToggledCollectionSidebar"></collection-list>
 
     <!--SEARCH LIST-->
-    <search-list [ngClass]="{'open-menu': isActiveSearchSidebar}"></search-list>
+    <search-list [isOpen]="isOpenSearchSidebar" [isToggled]="isToggledSearchSidebar"></search-list>
 
     <!--CONTENT CONTAINER-->
-    <div class="content-container" [ngClass]="{'open-menu': isActiveCollectionSidebar || isActiveSearchSidebar}">
+    <div class="content-container" [ngClass]="{'open-menu': isToggledCollectionSidebar || isToggledSearchSidebar}">
 
       <!--BANNER FOR UNVERIFIED USERS-->
       <div *ngIf="!user?.is_verified" class="larger row columns">

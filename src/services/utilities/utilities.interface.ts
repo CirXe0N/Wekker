@@ -8,3 +8,21 @@ export interface User {
   is_verified: boolean;
 }
 
+export interface CollectionTVShow {
+  tv_show_id: string;
+  name: string;
+  status: string;
+  last_seen_episode: CollectionTVShowEpisode,
+  last_released_episode: CollectionTVShowEpisode
+}
+
+interface CollectionTVShowEpisode {
+  episode_number: number;
+  season_number: number;
+}
+
+export interface CollectionMovie {
+  movie_id: string;
+  name: string;
+  status: string;
+}

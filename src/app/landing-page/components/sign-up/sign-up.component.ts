@@ -33,8 +33,8 @@ export class SignUpComponent implements OnInit {
       this.wekker.doPostRequest('/users/', value, true)
         .subscribe(
           res => {
-            this.utilities.setUser(res);
             localStorage.setItem('WekkerAccessToken', res.access_token);
+            this.utilities.getUser();
             this.router.navigate(['/main'])
           },
           err => {

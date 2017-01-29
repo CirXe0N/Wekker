@@ -12,7 +12,7 @@
       <div class="media-object stack-for-small">
         <div class="media-object-section">
           <div class="thumbnail hide-for-small-only">
-            <img *ngIf="tvShow?.poster" src="{{ settings.getEnvVariable('API_ENDPOINT') + tvShow?.poster }}">
+            <img *ngIf="tvShow?.poster" [src]="tvShow?.poster">
             <img *ngIf="!tvShow?.poster" src="../../../assets/images/poster-placeholder.jpg">
           </div>
         </div>
@@ -66,7 +66,10 @@
       </div>
     </div>
     <div class="options-container large-3 columns">
-      <a class="small expanded button"> <i class="fa fa-plus fa-fw" aria-hidden="true"></i> Add to collection </a>
+      <a class="small expanded button" [ngClass]="{'is-active': tvShow?.is_collection_item}" (click)="doToggleCollectionItemRequest()">
+        <span *ngIf="!tvShow?.is_collection_item"><i class="fa fa-plus fa-fw" aria-hidden="true"></i> Add to collection</span>
+        <span *ngIf="tvShow?.is_collection_item" class=""><i class="fa fa-check fa-fw" aria-hidden="true"></i> Added to collection</span>
+      </a>
       <a class="small expanded button"> <i class="fa fa-share fa-fw" aria-hidden="true"></i> Recommend to a Friend </a>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<div id="search-container">
+<div id="search-container" [ngClass]="{'open-menu': isOpen, 'toggled-menu': isToggled}">
   <div class="title-container">
     <div class="title">
       Search
@@ -25,15 +25,5 @@
         </td>
       </tr>
     </table>
-
-    <!--<ul *ngIf="searchList.length > 0" class="search-list">-->
-      <!--<li *ngFor="let item of searchList" [routerLink]="['/main/tv-shows/' + item.id]">-->
-        <!--{{item.name}}-->
-        <!--<span *ngIf="item.first_air_date">({{item.first_air_date}})</span>-->
-        <!--<div class="float-right">-->
-          <!---->
-        <!--</div>-->
-      <!--</li>-->
-    <!--</ul>-->
   </div>
 </div>

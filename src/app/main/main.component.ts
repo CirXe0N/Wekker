@@ -10,34 +10,51 @@ import {User} from "../../services/utilities/utilities.interface";
 })
 
 export class MainComponent implements OnInit {
-  private isActiveCollectionSidebar: boolean = false;
-  private isActiveSearchSidebar: boolean = false;
+  private user: User;
+  private isOpenCollectionSidebar: boolean = true;
+  private isOpenSearchSidebar: boolean = false;
+
+  private isToggledCollectionSidebar: boolean = false;
+  private isToggledSearchSidebar: boolean = false;
+
+
   private isActiveProfileMenu: boolean = false;
   private isVerificationEmailSent: boolean = false;
-  private user: User;
 
   constructor(private router: Router, private wekker: WekkerAPIService, private utilities: UtilitiesService) {}
 
   ngOnInit(): void {
-    this.doGetUserDataRequest();
+    this.getUser();
+  }
+
+  private getUser(): void {
+    this.utilities.getUser()
+      .subscribe(res => this.user = res);
   }
 
   private toggleCollectionSidebar(): void {
-    this.isActiveCollectionSidebar = !this.isActiveCollectionSidebar;
+    this.isToggledCollectionSidebar = !this.isToggledCollectionSidebar;
+
+    if(this.isToggledCollectionSidebar) {
+      this.isToggledSearchSidebar = false;
+    }
   }
 
   private toggleSearchSidebar(): void {
-    this.isActiveSearchSidebar = !this.isActiveSearchSidebar;
+    this.isToggledSearchSidebar = !this.isToggledSearchSidebar;
+    if(this.isToggledSearchSidebar) {
+      this.isToggledCollectionSidebar = false;
+    }
   }
 
   private openCollectionSidebar(): void {
-    this.isActiveCollectionSidebar = true;
-    this.isActiveSearchSidebar = false;
+    this.isOpenCollectionSidebar = true;
+    this.isOpenSearchSidebar = false;
   }
 
   private openSearchSidebar(): void {
-    this.isActiveCollectionSidebar = false;
-    this.isActiveSearchSidebar = true;
+    this.isOpenCollectionSidebar = false;
+    this.isOpenSearchSidebar = true;
   }
 
   private toggleProfileMenu(): void {
@@ -49,21 +66,5 @@ export class MainComponent implements OnInit {
       .subscribe(() => {});
 
     this.isVerificationEmailSent = true;
-  }
-
-  private doGetUserDataRequest(): void {
-    this.wekker.doGetRequest('/users/')
-      .subscribe(
-        res => {
-          this.user = res;
-          this.utilities.setUser(res);
-        },
-        err => this.logout()
-      )
-  }
-
-  private logout(): void {
-    localStorage.removeItem('WekkerAccessToken');
-    this.router.navigate(['/home']);
   }
 }

@@ -1,14 +1,36 @@
 #collection-container
-  display: inline-block
-  position: relative
+  position: fixed
   background-color: rgba(255, 255, 255, 0.10)
-  height: 100%
   width: 350px
+  transition: 0.5s
+  z-index: 9999
+  bottom: 0
+  top: 50px
+  overflow-y: auto
+  margin-left: -100%
+
+  &::-webkit-scrollbar
+    display: none
 
   @media screen and (max-width: 63.9375em)
     width: 100%
 
-  .title-container
+    &.toggled-menu
+      margin-left: 0
+
+  @media screen and (min-width: 64em)
+    &.open-menu
+      margin-left: 0
+
+  .empty-list
+    position: absolute
+    text-align: center
+    width: 100%
+    top: 45%
+    font-size: 0.9rem
+    color: #828282
+
+  .collection-selector
     padding: 0.5rem
 
     .title
@@ -19,9 +41,7 @@
       padding: 0.4rem
       font-size: 0.9rem
       letter-spacing: 0.3rem
-
-  .collection-selector
-    padding: 0 0.5rem 0.5rem 0.5rem
+      margin-bottom: 0.6rem
 
     a.button
       border: 1px solid #FFF

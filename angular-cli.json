@@ -25,7 +25,8 @@
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/foundation-sites/dist/js/foundation.js",
-        "../node_modules/moment/min/moment-with-locales.js"
+        "../node_modules/moment/min/moment-with-locales.js",
+        "../node_modules/lodash/lodash.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

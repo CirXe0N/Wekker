@@ -10,7 +10,7 @@ import {AccountRecoveryComponent} from "./account-recovery/account-recovery.comp
 
 export const appRoutes: Routes = [
   {
-    path: '', redirectTo: '/home', pathMatch: 'full'
+    path: '', redirectTo: '/main', pathMatch: 'full'
   },
   {
     path: 'home', component: LandingPageComponent

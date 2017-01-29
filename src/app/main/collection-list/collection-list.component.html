@@ -1,61 +1,80 @@
-<div id="collection-container">
-  <div class="title-container">
+<div id="collection-container" [ngClass]="{'open-menu': isOpen, 'toggled-menu': isToggled}">
+  <div class="collection-selector">
     <div class="title">
       My Collection
     </div>
-  </div>
-
-  <div class="collection-selector">
     <div class="row">
       <a (click)="selectTvShowCollection()" [ngClass]="{'selected': selectedListType == 'TV Shows'}" class="small small-6 column button"> TV Shows </a>
       <a (click)="selectMovieCollection()"  [ngClass]="{'selected': selectedListType == 'Movies'}" class="small small-6 column button" > Movies </a>
     </div>
   </div>
 
-  <ul class="collection-list">
-    <li *ngFor="let item of collectionList" [routerLink]="['/main/tv-shows/' + item.id]">
-      <img src="{{item.poster_url}}">
-      <div class="item-information">
-        <div class="title"> {{item.title}} </div>
-        <div class="status"> Status: <span>{{item.status}}</span></div>
+  <div *ngIf="collectionList.length == 0" class="empty-list">
+    <div><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></div>
+    <div>
+      There are no
+      <span *ngIf="selectedListType == 'TV Shows'">TV Shows</span>
+      <span *ngIf="selectedListType == 'Movies'">Movies</span>
+      in your collection.
+    </div>
+  </div>
 
-        <div *ngIf="item.type == 'TV Show'" class="tv-show-information">
-          <div> Last seen episode: <span>{{item.last_seen_episode}}</span></div>
-          <div> Last released episode: <span>{{item.last_released_episode}}</span></div>
-        </div>
+  <!--DESKTOP -->
+  <div *ngIf="collectionList.length > 0">
+    <ul *ngIf="selectedListType == 'TV Shows'" class="collection-list">
+      <li *ngFor="let tvShow of collectionList" [routerLink]="['/main/tv-shows/' + tvShow.tv_show_id]">
+        <img *ngIf="tvShow?.poster" [src]="tvShow?.poster">
+        <img *ngIf="!tvShow?.poster" src="../../../assets/images/poster-placeholder.jpg">
 
-        <div *ngIf="item.type == 'TV Show'" class="badges">
-          <div *ngIf="item.is_up_to_date" class="success badge"> Up-to-date </div>
-          <div *ngIf="item.has_new_episode" class="alert badge"> New Episode </div>
-          <div *ngIf="item.amount_comments > 0" class="badge">
-            {{item.amount_comments}}
-            <span *ngIf="item.amount_comments == 1">
-              New Comment
-            </span>
-            <span *ngIf="item.amount_comments > 1">
-              New Comments
-            </span>
+        <div class="item-information">
+          <div class="title"> {{tvShow.name}} </div>
+          <div class="status"> Status: <span>{{tvShow.status}}</span></div>
+
+          <div class="tv-show-information">
+            <div> Last seen episode:
+              <span *ngIf="!tvShow.last_seen_episode">
+                --
+              </span>
+              <span *ngIf="tvShow.last_seen_episode">
+                S{{utilities.addZeroToSingleDigit(tvShow.last_seen_episode.season_number)}}
+                E{{utilities.addZeroToSingleDigit(tvShow.last_seen_episode.episode_number)}}
+              </span>
+            </div>
+            <div> Last released episode:
+              <span *ngIf="!tvShow.last_released_episode">
+                --
+              </span>
+              <span *ngIf="tvShow.last_released_episode">
+                S{{utilities.addZeroToSingleDigit(tvShow.last_released_episode.season_number)}}
+                E{{utilities.addZeroToSingleDigit(tvShow.last_released_episode.episode_number)}}
+              </span>
+            </div>
+          </div>
+
+          <div class="badges">
+            <div *ngIf="checkWatchProgress(tvShow)" class="success badge"> Up-to-date </div>
+            <div *ngIf="!checkWatchProgress(tvShow)" class="alert badge"> New Episode(s) </div>
           </div>
         </div>
+      </li>
+    </ul>
+  </div>
 
-        <div *ngIf="item.type == 'Movie'" class="movie-information">
-          <div> Release date: <span>{{item.release_date}}</span></div>
-        </div>
+  <!--<div *ngIf="item.type == 'Movie'" class="movie-information">-->
+          <!--<div> Release date: <span>{{item.release_date}}</span></div>-->
+        <!--</div>-->
 
-        <div *ngIf="item.type == 'Movie'" class="badges">
-          <div *ngIf="item.is_watched" class="success badge"> Watched </div>
-          <div *ngIf="!item.is_watched" class="alert badge"> Not Watched </div>
-          <div *ngIf="item.amount_comments > 0" class="badge">
-            {{item.amount_comments}}
-            <span *ngIf="item.amount_comments == 1">
-              New Comment
-            </span>
-            <span *ngIf="item.amount_comments > 1">
-              New Comments
-            </span>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+        <!--<div *ngIf="item.type == 'Movie'" class="badges">-->
+          <!--<div *ngIf="item.is_watched" class="success badge"> Watched </div>-->
+          <!--<div *ngIf="!item.is_watched" class="alert badge"> Not Watched </div>-->
+          <!--<div *ngIf="item.amount_comments > 0" class="badge">-->
+            <!--{{item.amount_comments}}-->
+            <!--<span *ngIf="item.amount_comments == 1">-->
+              <!--New Comment-->
+            <!--</span>-->
+            <!--<span *ngIf="item.amount_comments > 1">-->
+              <!--New Comments-->
+            <!--</span>-->
+          <!--</div>-->
+        <!--</div>-->
 </div>

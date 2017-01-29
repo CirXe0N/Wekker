@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
       this.wekker.doPostRequest('/account/authentication/', value, true)
         .subscribe(
           res => {
-            this.utilities.setUser(res);
             localStorage.setItem('WekkerAccessToken', res.access_token);
+            this.utilities.getUser();
             this.router.navigate(['/main'])
           },
           err => {
