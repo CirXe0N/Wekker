@@ -1,6 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {WekkerAPIService} from "../../../services/wekker-api/wekker-api.service";
 import {DatesService} from "../../../services/dates/dates.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'search-list',
@@ -13,8 +14,9 @@ export class SearchListComponent implements OnInit {
 
   @Input() isOpen: boolean = false;
   @Input() isToggled: boolean = false;
+  @Output() isToggledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private wekker: WekkerAPIService, private dates: DatesService) {}
+  constructor(private wekker: WekkerAPIService, private dates: DatesService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -27,5 +29,12 @@ export class SearchListComponent implements OnInit {
           console.log(res)
         }
       )
+  }
+
+  private nagivateToTvShowDetails(tv_show_id: string) {
+    if(this.isToggled) {
+      this.isToggledChange.emit(false);
+    }
+    this.router.navigate(['/main/tv-shows/' + tv_show_id])
   }
 }

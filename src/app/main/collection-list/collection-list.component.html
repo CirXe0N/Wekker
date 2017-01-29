@@ -22,7 +22,7 @@
   <!--DESKTOP -->
   <div *ngIf="collectionList.length > 0">
     <ul *ngIf="selectedListType == 'TV Shows'" class="collection-list">
-      <li *ngFor="let tvShow of collectionList" [routerLink]="['/main/tv-shows/' + tvShow.tv_show_id]">
+      <li *ngFor="let tvShow of collectionList" (click)="nagivateToTvShowDetails(tvShow.tv_show_id)">
         <img *ngIf="tvShow?.poster" [src]="tvShow?.poster">
         <img *ngIf="!tvShow?.poster" src="../../../assets/images/poster-placeholder.jpg">
 

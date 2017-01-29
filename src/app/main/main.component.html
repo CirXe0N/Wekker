@@ -50,10 +50,10 @@
     </div>
 
     <!--COLLECTION LIST-->
-    <collection-list [isOpen]="isOpenCollectionSidebar" [isToggled]="isToggledCollectionSidebar"></collection-list>
+    <collection-list [isOpen]="isOpenCollectionSidebar" [isToggled]="isToggledCollectionSidebar" (isToggledChange)="toggleCollectionSidebar()"></collection-list>
 
     <!--SEARCH LIST-->
-    <search-list [isOpen]="isOpenSearchSidebar" [isToggled]="isToggledSearchSidebar"></search-list>
+    <search-list [isOpen]="isOpenSearchSidebar" [isToggled]="isToggledSearchSidebar" (isToggledChange)="toggleSearchSidebar()"></search-list>
 
     <!--CONTENT CONTAINER-->
     <div class="content-container" [ngClass]="{'open-menu': isToggledCollectionSidebar || isToggledSearchSidebar}">

@@ -16,7 +16,7 @@
       <div>Nothing to Search.</div>
     </div>
     <table *ngIf="searchList.length > 0" class="search-list">
-      <tr *ngFor="let item of searchList" [routerLink]="['/main/tv-shows/' + item.tv_show_id]">
+      <tr *ngFor="let item of searchList" (click)="nagivateToTvShowDetails(item.tv_show_id)">
         <td>
           {{item.name}} <span *ngIf="item.first_air_date">({{ dates.convertToYear(item.first_air_date) }})</span>
         </td>

@@ -1,6 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {UtilitiesService} from "../../../services/utilities/utilities.service";
 import {CollectionTVShow} from "../../../services/utilities/utilities.interface";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'collection-list',
@@ -16,8 +17,9 @@ export class CollectionListComponent implements OnInit {
 
   @Input() isOpen: boolean = false;
   @Input() isToggled: boolean = false;
+  @Output() isToggledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private utilities: UtilitiesService) {}
+  constructor(private utilities: UtilitiesService, private router: Router) {}
 
   ngOnInit(): void {
     this.doGetTvShowCollection();
@@ -47,6 +49,13 @@ export class CollectionListComponent implements OnInit {
   private selectMovieCollection() {
     this.selectedListType = 'Movies';
     this.collectionList =  this.movieList;
+  }
+
+  private nagivateToTvShowDetails(tv_show_id: string) {
+    if(this.isToggled) {
+      this.isToggledChange.emit(false);
+    }
+    this.router.navigate(['/main/tv-shows/' + tv_show_id])
   }
 
   private checkWatchProgress(tvShow: CollectionTVShow) {
