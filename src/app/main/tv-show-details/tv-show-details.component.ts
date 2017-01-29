@@ -12,6 +12,7 @@ import {UtilitiesService} from "../../../services/utilities/utilities.service";
 
 export class TVShowDetailsComponent implements OnInit {
   private isLoading: boolean = true;
+  private isRequestingCollectionItem: boolean = false;
   private selectedPage: string = 'Episode Guide';
   private tvShow: TVShow;
 
@@ -35,6 +36,7 @@ export class TVShowDetailsComponent implements OnInit {
   }
 
   private doToggleCollectionItemRequest() {
+    this.isRequestingCollectionItem = true;
     let request = {
       is_collection_item: !this.tvShow.is_collection_item
     };
@@ -43,6 +45,7 @@ export class TVShowDetailsComponent implements OnInit {
       .subscribe(res => {
         this.tvShow = res;
         this.utilities.getTVShowCollection();
+        this.isRequestingCollectionItem = false;
       });
   }
 
