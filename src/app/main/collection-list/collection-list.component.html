@@ -10,16 +10,25 @@
   </div>
 
   <div *ngIf="collectionList.length == 0" class="empty-list">
-    <div><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></div>
-    <div>
-      There are no
-      <span *ngIf="selectedListType == 'TV Shows'">TV Shows</span>
-      <span *ngIf="selectedListType == 'Movies'">Movies</span>
-      in your collection.
+    <div *ngIf="!isRequestingCollection">
+      <div><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></div>
+      <div>
+        There are no
+        <span *ngIf="selectedListType == 'TV Shows'">TV Shows</span>
+        <span *ngIf="selectedListType == 'Movies'">Movies</span>
+        in your collection.
+      </div>
+    </div>
+    <div *ngIf="isRequestingCollection">
+      <div class="loading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+      </div>
     </div>
   </div>
 
-  <!--DESKTOP -->
   <div *ngIf="collectionList.length > 0">
     <ul *ngIf="selectedListType == 'TV Shows'" class="collection-list">
       <li *ngFor="let tvShow of collectionList" (click)="nagivateToTvShowDetails(tvShow.tv_show_id)">

@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 
 export class CollectionListComponent implements OnInit {
+  private isRequestingCollection: boolean = true;
   private selectedListType: string = 'TV Shows';
   private collectionList: CollectionTVShow[] | any[] = [];
   private tvShowList: CollectionTVShow[] =[];
@@ -31,6 +32,7 @@ export class CollectionListComponent implements OnInit {
       .subscribe(res => {
         this.tvShowList = res;
         this.selectTvShowCollection();
+        this.isRequestingCollection = false;
       });
   }
 
