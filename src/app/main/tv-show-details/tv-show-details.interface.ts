@@ -29,6 +29,7 @@ export interface Episode {
   name: string;
   episode_number: number;
   is_watched: boolean;
+  isRequestingWatched: boolean;
 }
 
 export interface CastMember {

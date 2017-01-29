@@ -34,6 +34,7 @@ export class EpisodeGuideComponent implements OnChanges {
   }
 
   private doUpdateWatchedEpisodeRequest(episode: Episode) {
+    episode.isRequestingWatched = true;
     let request = {
       is_watched: !episode.is_watched
     };
@@ -42,6 +43,7 @@ export class EpisodeGuideComponent implements OnChanges {
       .subscribe(res => {
         episode.is_watched = res.is_watched;
         this.utilities.getTVShowCollection();
+        episode.isRequestingWatched = false;
       });
   }
 
