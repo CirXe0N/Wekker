@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from "@angular/core";
+import {Component, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {Season, Episode} from "../../tv-show-details.interface";
 import {DatesService} from "../../../../../services/dates/dates.service";
 import {WekkerAPIService} from "../../../../../services/wekker-api/wekker-api.service";
@@ -18,9 +18,9 @@ export class EpisodeGuideComponent implements OnChanges {
 
   constructor(private dates: DatesService, private wekker: WekkerAPIService, private utilities: UtilitiesService) {}
 
-  ngOnChanges(): void {
-    if(this.seasons && this.seasons.length > 0) {
-      for(let season of this.seasons) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['seasons'].currentValue) {
+      for (let season of this.seasons) {
         season.is_watched = this.checkWatchedStatus(season);
       }
 

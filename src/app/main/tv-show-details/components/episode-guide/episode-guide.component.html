@@ -7,7 +7,7 @@
       </a>
     </div>
 
-    <select *ngIf="seasons" [(ngModel)]="selectedSeasonNumber" class="seasons-menu hide-for-large">
+    <select #SeasonSelector *ngIf="seasons" (change)="selectSeason(seasons[SeasonSelector.value-1])" class="seasons-menu hide-for-large">
       <option *ngFor="let season of seasons" [value]="season?.season_number">
         <span *ngIf="season.is_watched">&#10004;</span> Season {{ season?.season_number }} ({{ season?.episode_number }} Episodes)
       </option>
