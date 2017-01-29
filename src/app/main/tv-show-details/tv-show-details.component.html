@@ -1,4 +1,15 @@
-<div id="tv-shows-details">
+<div *ngIf="isLoading" id="loading-page">
+  <div class="loading-container">
+    <div class="loading">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" id="tv-shows-details">
   <div class="larger row">
     <div class="large-2 columns end">
       <a [routerLink]="['/main']" class="small expanded button back-button">

@@ -11,6 +11,7 @@ import {UtilitiesService} from "../../../services/utilities/utilities.service";
 })
 
 export class TVShowDetailsComponent implements OnInit {
+  private isLoading: boolean = true;
   private selectedPage: string = 'Episode Guide';
   private tvShow: TVShow;
 
@@ -20,12 +21,17 @@ export class TVShowDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .map(params => params['id'])
-      .subscribe(res => this.doTVShowDetailsRequest(res));
+      .subscribe(res => {
+        this.isLoading = true;
+        this.doTVShowDetailsRequest(res)});
   }
 
   private doTVShowDetailsRequest(tvShowId: string) {
     this.wekker.doGetRequest('/tv-shows/' + tvShowId + '/')
-      .subscribe(res => this.tvShow = res);
+      .subscribe(res => {
+        this.tvShow = res;
+        this.isLoading = false;
+      });
   }
 
   private doToggleCollectionItemRequest() {
