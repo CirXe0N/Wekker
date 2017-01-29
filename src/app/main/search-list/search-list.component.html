@@ -8,6 +8,12 @@
   <div class="search-input-container">
     <i class="fa fa-search search-icon" aria-hidden="true"></i>
     <input #searchInputField type="text" (keyup)="doSearchRequest(searchInputField.value)" placeholder="Search for a TV Show or Movie">
+    <div class="loading" [ngClass]="{'invisible': !isRequestingSearch}">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
   </div>
 
   <div class="search-results-container">

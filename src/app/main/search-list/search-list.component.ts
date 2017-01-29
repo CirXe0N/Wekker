@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 
 export class SearchListComponent implements OnInit {
+  private isRequestingSearch: boolean =  false;
   private searchList: any[] = [];
 
   @Input() isOpen: boolean = false;
@@ -21,12 +22,12 @@ export class SearchListComponent implements OnInit {
   ngOnInit() {}
 
   private doSearchRequest(query: string) {
+    this.isRequestingSearch = true;
     this.wekker.doGetRequest('/tv-shows/?query=' + query)
-      .debounceTime(5000)
       .subscribe(
         res => {
           this.searchList = res;
-          console.log(res)
+          setTimeout(()=>this.isRequestingSearch = false, 2000);
         }
       )
   }
