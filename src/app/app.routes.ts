@@ -2,7 +2,7 @@ import {Routes} from "@angular/router";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {DashboardComponent} from "./main/dashboard/dashboard.component";
 import {MainComponent} from "./main/main.component";
-import {MovieDetailsComponent} from "./main/movie-details/movie-details-component";
+import {MovieDetailsComponent} from "./main/movie-details/movie-details.component";
 import {TVShowDetailsComponent} from "./main/tv-show-details/tv-show-details.component";
 import {AuthenticationGuard} from "../guards/authentication.guard";
 import {AccountVerificationComponent} from "./account-verification/account-verification.component";

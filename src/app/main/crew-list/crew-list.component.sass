@@ -1,0 +1,50 @@
+#crew-list
+  a.button
+    background-color: rgba(0, 0, 0, 0.1)
+    color: #FFF
+    text-align: left
+    margin-bottom: 0.15rem
+    font-size: 0.8rem
+
+    &:hover
+      background-color: #FFF
+      color: #333
+
+    &.selected
+      background-color: #FFF
+      color: #333
+      cursor: default
+
+  table
+    font-size: 0.85rem
+
+    tbody, tr:nth-child(even)
+      background-color: transparent
+
+    td
+      width: 50%
+
+      &.person-name
+        text-align: left
+        color: #FFF
+        font-weight: 700
+
+      &.character-name, &.crew-title
+        text-align: left
+        color: rgba(255, 255, 255, 0.6)
+
+      &.empty-list
+        text-align: left
+        color: #FFF
+
+  select.tab-menu
+    font-size: 0.85rem
+    color: #afb1be
+    background-color: rgba(51, 51, 51, 0.5)
+    border: 1px solid #525252
+    box-shadow: none
+    outline: none
+
+    option
+      background-color: #333333
+      padding-top: 1rem

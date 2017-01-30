@@ -23,19 +23,27 @@ export class SearchListComponent implements OnInit {
 
   private doSearchRequest(query: string) {
     this.isRequestingSearch = true;
-    this.wekker.doGetRequest('/tv-shows/?query=' + query)
+    this.wekker.doGetRequest('/search/?query=' + query)
       .subscribe(
         res => {
+          console.log(res);
           this.searchList = res;
           setTimeout(()=>this.isRequestingSearch = false, 2000);
         }
       )
   }
 
-  private nagivateToTvShowDetails(tv_show_id: string) {
+  private nagivateToMediaDetails(media: any) {
     if(this.isToggled) {
       this.isToggledChange.emit(false);
     }
-    this.router.navigate(['/main/tv-shows/' + tv_show_id])
+
+    if(media.type == 'TV Show') {
+      this.router.navigate(['/main/tv-shows/' + media.tv_show_id])
+    }
+
+    if(media.type == 'Movie') {
+      this.router.navigate(['/main/movies/' + media.movie_id])
+    }
   }
 }

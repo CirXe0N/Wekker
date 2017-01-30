@@ -22,12 +22,14 @@
       <div>Nothing to Search.</div>
     </div>
     <table *ngIf="searchList.length > 0" class="search-list">
-      <tr *ngFor="let item of searchList" (click)="nagivateToTvShowDetails(item.tv_show_id)">
+      <tr *ngFor="let item of searchList" (click)="nagivateToMediaDetails(item)">
         <td>
-          {{item.name}} <span *ngIf="item.first_air_date">({{ dates.convertToYear(item.first_air_date) }})</span>
+          {{item.name}}
+          <span *ngIf="item.type == 'TV Show' && item.first_air_date">({{ dates.convertToYear(item.first_air_date) }})</span>
+          <span *ngIf="item.type == 'TV Movie' && item.release_date">({{ dates.convertToYear(item.release_date) }})</span>
         </td>
         <td class="badges-cell">
-          <div class="badge"> TV SHOW </div>
+          <div class="badge">{{item.type}}</div>
         </td>
       </tr>
     </table>

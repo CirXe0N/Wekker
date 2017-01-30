@@ -1,0 +1,68 @@
+<div id="crew-list">
+  <div class="larger row">
+    <div class="large-2 columns">
+      <div class="tab-menu show-for-large">
+        <a *ngIf="castMembers" (click)="selectedTab = 'Cast'" [ngClass]="{'selected': selectedTab == 'Cast'}" class="small button expanded">
+          Cast
+        </a>
+        <a *ngIf="crewMembers" (click)="selectedTab = 'Crew'" [ngClass]="{'selected': selectedTab == 'Crew'}" class="small button expanded">
+          Crew
+        </a>
+      </div>
+
+      <select #tabSelector (change)="selectedTab = tabSelector.value" class="tab-menu hide-for-large">
+        <option value="Cast"> Cast </option>
+        <option value="Crew"> Crew </option>
+      </select>
+    </div>
+
+    <div class="large-10 columns end">
+      <div class="row">
+        <div class="large-6 columns">
+          <div *ngIf="selectedTab == 'Cast'" class="section-container">
+            <table>
+              <tr *ngIf="castMembers.length == 0">
+                <td class="empty-list"> No information available at this moment. </td>
+              </tr>
+              <tr *ngFor="let castMember of castMembersSplit[0]">
+                <td class="person-name">{{castMember.name}}</td>
+                <td class="character-name">{{castMember.character}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div *ngIf="selectedTab == 'Crew'" class="section-container">
+            <table>
+              <tr *ngIf="crewMembers.length == 0">
+                <td class="empty-list"> No information available at this moment. </td>
+              </tr>
+              <tr *ngFor="let crewMember of crewMembersSplit[0]">
+                <td class="person-name">{{crewMember.name}}</td>
+                <td class="crew-title">{{crewMember.job_title}}</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+        <div class="large-6 columns">
+          <div *ngIf="selectedTab == 'Cast'" class="section-container">
+            <table>
+              <tr *ngFor="let castMember of castMembersSplit[1]">
+                <td class="person-name">{{castMember.name}}</td>
+                <td class="character-name">{{castMember.character}}</td>
+              </tr>
+            </table>
+          </div>
+          <div *ngIf="selectedTab == 'Crew'" class="section-container">
+            <table>
+              <tr *ngFor="let crewMember of crewMembersSplit[1]">
+                <td class="person-name">{{crewMember.name}}</td>
+                <td class="crew-title">{{crewMember.job_title}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

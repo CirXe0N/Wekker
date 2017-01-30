@@ -18,9 +18,9 @@ import {WatchListComponent} from "./main/dashboard/components/watch-list/watch-l
 import {IdeaBoxComponent} from "./main/dashboard/components/idea-box/idea-box.component";
 import {MainComponent} from "./main/main.component";
 import {TVShowDetailsComponent} from "./main/tv-show-details/tv-show-details.component";
-import {MovieDetailsComponent} from "./main/movie-details/movie-details-component";
+import {MovieDetailsComponent} from "./main/movie-details/movie-details.component";
 import {EpisodeGuideComponent} from "./main/tv-show-details/components/episode-guide/episode-guide.component";
-import {CrewListComponent} from "./main/tv-show-details/components/crew-list/crew-list.component";
+import {CrewListComponent} from "./main/crew-list/crew-list.component";
 import {SettingsService} from "../services/settings/settings.service";
 import {WekkerAPIService} from "../services/wekker-api/wekker-api.service";
 import {UtilitiesService} from "../services/utilities/utilities.service";

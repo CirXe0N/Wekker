@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {WekkerAPIService} from "../../../services/wekker-api/wekker-api.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TVShow} from "./tv-show-details.interface";
 import {DatesService} from "../../../services/dates/dates.service";
 import {UtilitiesService} from "../../../services/utilities/utilities.service";
@@ -16,8 +16,8 @@ export class TVShowDetailsComponent implements OnInit {
   private selectedPage: string = 'Episode Guide';
   private tvShow: TVShow;
 
-  constructor(private wekker: WekkerAPIService, private route: ActivatedRoute,
-              private dates: DatesService, private utilities: UtilitiesService) {}
+  constructor(private wekker: WekkerAPIService, private route: ActivatedRoute, private dates: DatesService,
+              private utilities: UtilitiesService, private router: Router) {}
 
   ngOnInit() {
     this.route.params
@@ -29,10 +29,13 @@ export class TVShowDetailsComponent implements OnInit {
 
   private doTVShowDetailsRequest(tvShowId: string) {
     this.wekker.doGetRequest('/tv-shows/' + tvShowId + '/')
-      .subscribe(res => {
-        this.tvShow = res;
-        this.isLoading = false;
-      });
+      .subscribe(
+        res => {
+          this.tvShow = res;
+          this.isLoading = false;
+        },
+        err => this.router.navigate(['/main'])
+      );
   }
 
   private doToggleCollectionItemRequest() {

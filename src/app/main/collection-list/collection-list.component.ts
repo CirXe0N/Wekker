@@ -2,6 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {UtilitiesService} from "../../../services/utilities/utilities.service";
 import {CollectionTVShow} from "../../../services/utilities/utilities.interface";
 import {Router} from "@angular/router";
+import {DatesService} from "../../../services/dates/dates.service";
 
 @Component({
   selector: 'collection-list',
@@ -20,7 +21,7 @@ export class CollectionListComponent implements OnInit {
   @Input() isToggled: boolean = false;
   @Output() isToggledChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private utilities: UtilitiesService, private router: Router) {}
+  constructor(private utilities: UtilitiesService, private dates: DatesService, private router: Router) {}
 
   ngOnInit(): void {
     this.doGetTvShowCollection();
@@ -40,6 +41,10 @@ export class CollectionListComponent implements OnInit {
     this.utilities.getMovieCollection()
       .subscribe(res => {
         this.movieList = res;
+
+        if(this.selectedListType == 'Movies') {
+          this.selectMovieCollection();
+        }
       });
   }
 
@@ -53,11 +58,18 @@ export class CollectionListComponent implements OnInit {
     this.collectionList =  this.movieList;
   }
 
-  private nagivateToTvShowDetails(tv_show_id: string) {
+  private nagivateToMediaDetails(media: any) {
     if(this.isToggled) {
       this.isToggledChange.emit(false);
     }
-    this.router.navigate(['/main/tv-shows/' + tv_show_id])
+
+    if(this.selectedListType == 'TV Shows') {
+      this.router.navigate(['/main/tv-shows/' + media.tv_show_id])
+    }
+
+    if(this.selectedListType == 'Movies') {
+      this.router.navigate(['/main/movies/' + media.movie_id])
+    }
   }
 
   private checkWatchProgress(tvShow: CollectionTVShow) {
