@@ -36,7 +36,7 @@
             </span>
           </div>
 
-          <a *ngIf="!episode.is_watched" (click)="doUpdateWatchedEpisodeRequest(episode)" class="tiny not-watched button">
+          <a *ngIf="!episode.is_watched && checkAvailability(episode)" (click)="doUpdateWatchedEpisodeRequest(episode)" class="tiny not-watched button">
             <span *ngIf="!episode.isRequestingWatched">
               <i class="fa fa-times fa-fw" aria-hidden="true"></i>
               Not Watched
@@ -50,7 +50,7 @@
             </div>
           </a>
 
-          <a *ngIf="episode.is_watched" (click)="doUpdateWatchedEpisodeRequest(episode)" class="tiny watched button">
+          <a *ngIf="episode.is_watched && checkAvailability(episode)" (click)="doUpdateWatchedEpisodeRequest(episode)" class="tiny watched button">
             <span *ngIf="!episode.isRequestingWatched">
               <i class="fa fa-check fa-fw" aria-hidden="true"></i>
               Watched
@@ -62,6 +62,10 @@
               <div class="rect3"></div>
               <div class="rect4"></div>
             </div>
+          </a>
+
+          <a *ngIf="!checkAvailability(episode)" class="tiny disabled watched button">
+            Not Available
           </a>
         </td>
       </tr>

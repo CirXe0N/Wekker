@@ -8,4 +8,5 @@ export interface UpcomingRelease {
   title: string;
   season: string;
   episode: string;
+  type: string;
 }

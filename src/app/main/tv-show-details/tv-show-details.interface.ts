@@ -29,6 +29,8 @@ export interface Episode {
   name: string;
   episode_number: number;
   is_watched: boolean;
+  air_date: string;
+  overview: string;
   isRequestingWatched: boolean;
 }
 

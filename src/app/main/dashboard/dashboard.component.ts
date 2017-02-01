@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {UtilitiesService} from "../../../services/utilities/utilities.service";
 
 @Component({
   templateUrl: './dashboard.component.html'
@@ -6,10 +7,22 @@ import {Component, OnInit} from "@angular/core";
 
 export class DashboardComponent implements OnInit {
   private isActiveCollectionSidebar = false;
+  private dashboardStatistics: any;
 
-  ngOnInit() {}
+  constructor(private utilities: UtilitiesService) {}
 
-  private toggleCollectionSidebar() {
+  ngOnInit() {
+    this.getDashboardStatistics();
+  }
+
+  private toggleCollectionSidebar(): void {
     this.isActiveCollectionSidebar = !this.isActiveCollectionSidebar;
   }
-}
+
+  private getDashboardStatistics(): void {
+    this.utilities.getDasboardStatistics()
+      .subscribe(res => {
+        this.dashboardStatistics = res;
+      })
+  }
+ }

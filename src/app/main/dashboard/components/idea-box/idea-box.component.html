@@ -1,4 +1,4 @@
-<div id="idea-box">
+<div [formGroup]="form" id="idea-box">
   <h1>
     <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
     Help you by helping us improve!
@@ -9,13 +9,30 @@
   </div>
 
   <label for="feedback-type"> Feedback Type </label>
-  <select id="feedback-type">
-    <option>Idea/Suggestion</option>
-    <option>Bug</option>
-    <option>Just saying Hi!</option>
+  <select formControlName="feedback_type" id="feedback-type">
+    <option value="Idea/Suggestion">Idea/Suggestion</option>
+    <option value="Bug">Bug</option>
+    <option value="Just saying Hi">Just saying Hi!</option>
   </select>
 
   <label for="feedback-message"> Message (max. 1200 characters) </label>
-  <textarea id="feedback-message" maxlength="1200"></textarea>
-  <a class="expanded hollow button"> Send </a>
+  <textarea formControlName="message" id="feedback-message" maxlength="1200"></textarea>
+  <a *ngIf="!isRequesting && !isSuccessfulRequest" (click)="doFeedbackRequest(form)" class="expanded hollow button">
+    Send
+  </a>
+
+  <a *ngIf="isRequesting && !isSuccessfulRequest" class="medium hollow expanded button is-active">
+    <div class="loading">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+  </a>
+
+  <a *ngIf="isSuccessfulRequest" class="medium hollow expanded button is-active">
+    <div class="successful">
+      <i class="fa fa-check" aria-hidden="true"></i> Feedback Sent!
+    </div>
+  </a>
 </div>

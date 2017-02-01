@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User, CollectionTVShow, CollectionMovie} from "./utilities.interface";
+import {User, CollectionTVShow, CollectionMovie, DashboardStatistics} from "./utilities.interface";
 import {Observable, Subject} from "rxjs";
 import {Router} from "@angular/router";
 import {WekkerAPIService} from "../wekker-api/wekker-api.service";
@@ -9,6 +9,7 @@ export class UtilitiesService {
   private user: Subject<User> = new Subject<User>();
   private tvShowCollection: Subject<CollectionTVShow[]> = new Subject<CollectionTVShow[]>();
   private movieCollection: Subject<CollectionMovie[]> = new Subject<CollectionMovie[]>();
+  private dashboardStatistics: Subject<DashboardStatistics> = new Subject<DashboardStatistics>();
 
   constructor(private router: Router, private wekker: WekkerAPIService) {}
 
@@ -34,6 +35,13 @@ export class UtilitiesService {
       .subscribe(res => this.movieCollection.next(res));
 
     return this.movieCollection.asObservable().map(res => res);
+  }
+
+  public getDasboardStatistics(): Observable<DashboardStatistics> {
+    this.wekker.doGetRequest('/dashboard/statistics/')
+      .subscribe(res => this.dashboardStatistics.next(res));
+
+    return this.dashboardStatistics.asObservable().map(res => res);
   }
 
   public isLoggedIn(): boolean {

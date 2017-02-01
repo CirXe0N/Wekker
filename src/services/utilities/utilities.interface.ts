@@ -26,3 +26,10 @@ export interface CollectionMovie {
   name: string;
   status: string;
 }
+
+export interface DashboardStatistics {
+  collected_tv_shows: number;
+  collected_movies: number;
+  watched_tv_show_episodes: number;
+  watched_movies: number;
+}

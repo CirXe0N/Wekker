@@ -16,17 +16,32 @@
   </div>
 
   <div class="large-4 columns">
+
+    <div class="row">
+      <div class="large-6 columns">
+
+        <!--STAT: TV SHOWS IN COLLECTION -->
+        <statistic-card [description]="'TV SHOWS IN COLLECTION'" [amount]="dashboardStatistics?.collected_tv_shows"></statistic-card>
+      </div>
+
+      <div class="large-6 columns">
+
+        <!--STAT: MOVIES IN COLLECTION-->
+        <statistic-card [description]="'MOVIES IN COLLECTION'" [amount]="dashboardStatistics?.collected_movies"></statistic-card>
+      </div>
+    </div>
+
     <div class="row">
       <div class="large-6 columns">
 
         <!--STAT: TV SHOWS WATCHED-->
-        <statistic-card [description]="'TV EPISODES WATCHED'" [amount]="'5000'"></statistic-card>
+        <statistic-card [description]="'TV EPISODES WATCHED'" [amount]="dashboardStatistics?.watched_tv_show_episodes"></statistic-card>
       </div>
 
       <div class="large-6 columns">
 
         <!--STAT: MOVIES WATCHED-->
-        <statistic-card [description]="'MOVIES WATCHED'" [amount]="'150'"></statistic-card>
+        <statistic-card [description]="'MOVIES WATCHED'" [amount]="dashboardStatistics?.watched_movies"></statistic-card>
       </div>
     </div>
 

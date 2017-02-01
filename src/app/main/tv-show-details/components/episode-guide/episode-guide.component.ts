@@ -42,6 +42,7 @@ export class EpisodeGuideComponent implements OnChanges {
     this.wekker.doPutRequest('/tv-show-episodes/' + episode.episode_id + '/', request)
       .subscribe(res => {
         episode.is_watched = res.is_watched;
+        this.selectedSeason.is_watched = this.checkWatchedStatus(this.selectedSeason);
         this.utilities.getTVShowCollection();
         episode.isRequestingWatched = false;
       });
@@ -54,5 +55,12 @@ export class EpisodeGuideComponent implements OnChanges {
       }
     }
     return true;
+  }
+
+  private checkAvailability(episode: Episode): boolean {
+    let today = this.dates.getTodayObject();
+    let air_date = this.dates.getDateObject(episode.air_date);
+    let diff = today.diff(air_date, 'days');
+    return diff > 0;
   }
 }
