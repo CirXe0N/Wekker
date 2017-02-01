@@ -15,3 +15,9 @@ export interface Movie {
 interface Genre {
   name: string;
 }
+
+export interface Recommendation {
+  recipient: string;
+  media_type: string;
+  movie_id: string;
+}

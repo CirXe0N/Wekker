@@ -1,9 +1,10 @@
 import {Component} from "@angular/core";
-import {Movie} from "./movie-details.interface";
+import {Movie, Recommendation} from "./movie-details.interface";
 import {WekkerAPIService} from "../../../services/wekker-api/wekker-api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UtilitiesService} from "../../../services/utilities/utilities.service";
 import {DatesService} from "../../../services/dates/dates.service";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   templateUrl: './movie-details.component.html',
@@ -14,12 +15,19 @@ export class MovieDetailsComponent {
   private isLoading: boolean = true;
   private isRequestingCollectionItem: boolean = false;
   private isRequestingWatchedItem: boolean = false;
+  private isRecommendationToggled: boolean = false;
+  private isRequestingRecommendation: boolean = false;
   private movie: Movie;
+  private form: FormGroup;
 
   constructor(private wekker: WekkerAPIService, private route: ActivatedRoute, private dates: DatesService,
               private utilities: UtilitiesService, private router: Router) {}
 
   ngOnInit() {
+    this.form = new FormGroup({
+      recipient: new FormControl('', [Validators.required, Validators.pattern('.+@.+[.]+.+')]),
+    });
+
     this.route.params
       .map(params => params['id'])
       .subscribe(
@@ -68,4 +76,24 @@ export class MovieDetailsComponent {
         this.isRequestingWatchedItem = false;
       });
   }
+
+  private doSendRecommendationRequest({value, valid}: {value: Recommendation, valid: boolean}) {
+    this.isRequestingRecommendation = true;
+    if(valid) {
+      value['media_type'] = 'Movie';
+      value['movie_id'] =  this.movie.movie_id;
+
+      this.wekker.doPostRequest('/recommendation/', value)
+        .subscribe(res => {
+          this.toggleRecommendation();
+          this.isRequestingRecommendation = false;
+          this.form.reset();
+        })
+    }
+  }
+
+  private toggleRecommendation() {
+    this.isRecommendationToggled = !this.isRecommendationToggled;
+  }
+
 }

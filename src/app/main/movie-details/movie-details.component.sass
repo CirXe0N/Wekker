@@ -124,6 +124,47 @@
     a.button
       border: 1px solid #FFF
 
+  .recommendation-container
+    position: relative
+
+    .recommendation
+      height: 0
+      overflow: hidden
+      transition: height 0.5s
+      font-size: 0.9rem
+      background-color: rgba(0, 0, 0, 0.1)
+      color: #FFF
+
+      &.is-open
+        height: 110px
+
+      .recommendation-input-group
+        padding: 0.85rem 0.75rem
+
+        input
+          font-size: 0.75rem
+          line-height: 0.5rem
+          color: #afb1be
+          background-color: rgba(51, 51, 51, 0.5)
+          border: 1px solid #525252
+          box-shadow: none
+          outline: none
+          padding-top: 0.15rem
+          padding-bottom: 0.15rem
+          height: 30px
+
+          &::-webkit-input-placeholder
+            color: #525252
+
+        a
+          border: 1px solid #FFF
+          font-size: 0.75rem
+          text-align: center
+
+          &.is-active
+            background-color: #FFF
+            cursor: default
+
 #loading-page
   display: table
   width: 100%

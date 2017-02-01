@@ -48,3 +48,8 @@ interface Genre {
   name: string;
 }
 
+export interface Recommendation {
+  recipient: string;
+  media_type: string;
+  tv_movie_id: string;
+}

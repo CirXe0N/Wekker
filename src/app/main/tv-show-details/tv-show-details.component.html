@@ -95,7 +95,29 @@
           </div>
         </div>
       </a>
-      <a class="small expanded button"> <i class="fa fa-share fa-fw" aria-hidden="true"></i> Recommend to a Friend </a>
+      <div class="recommendation-container">
+        <a (click)="toggleRecommendation()" [ngClass]="{'is-active': isRecommendationToggled}" class="small expanded button">
+          <i class="fa fa-share fa-fw" aria-hidden="true"></i> Recommend to a Friend
+        </a>
+
+        <div [ngClass]="{'is-open': isRecommendationToggled}" class="recommendation">
+          <div class="recommendation-input-group">
+            <div [formGroup]="form" (keyup.enter)="doSendRecommendationRequest(form)" class="input-field">
+              <input type="text" formControlName="recipient" placeholder="Friends' E-mail">
+              <a *ngIf="!isRequestingRecommendation" (click)="doSendRecommendationRequest(form)" class="medium hollow expanded button">Send Recommendation</a>
+
+              <a *ngIf="isRequestingRecommendation" class="medium hollow expanded button is-active">
+                <div class="loading">
+                  <div class="rect1"></div>
+                  <div class="rect2"></div>
+                  <div class="rect3"></div>
+                  <div class="rect4"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
