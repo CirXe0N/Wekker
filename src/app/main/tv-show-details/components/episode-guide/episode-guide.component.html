@@ -3,7 +3,7 @@
     <div *ngIf="seasons"  class="seasons-menu show-for-large">
       <a *ngFor="let season of seasons" (click)="selectSeason(season)" [ngClass]="{'selected': selectedSeasonNumber == season?.season_number}" class="small button expanded">
         Season {{ season?.season_number }} <i *ngIf="season.is_watched" class="fa fa-check fa-fw" aria-hidden="true"></i>
-        <span> {{ season?.episode_number }} Episodes </span>
+        <span> {{ season?.episode_count }} Episodes </span>
       </a>
     </div>
 
@@ -24,14 +24,16 @@
           {{episode.name}}
 
           <div class="air-date">
-          AIR DATE <span> {{ dates.convertToShortDate(episode.air_date) }} </span>
+          AIR DATE
+            <span *ngIf="!episode.air_date"> -- </span>
+            <span *ngIf="episode.air_date"> {{ dates.convertToShortDate(episode.air_date) }} </span>
           </div>
 
           <div class="description">
-            <span *ngIf="!tvShow?.overview">
+            <span *ngIf="!episode?.overview">
               No description available at this moment.
             </span>
-            <span *ngIf="tvShow?.overview">
+            <span *ngIf="episode?.overview">
               {{episode.overview}}
             </span>
           </div>

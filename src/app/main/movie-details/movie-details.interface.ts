@@ -5,7 +5,8 @@ export interface Movie {
   status: string;
   release_date: string;
   poster: string;
-  language: string;
+  runtime: string;
+  original_language: string;
   genres: Genre[];
   type: string;
   is_collection_item: boolean;

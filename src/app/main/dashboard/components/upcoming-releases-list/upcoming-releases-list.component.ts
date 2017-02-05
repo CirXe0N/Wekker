@@ -43,7 +43,9 @@ export class UpcomingReleasesListComponent implements OnInit {
         for(let upcomingRelease of res) {
           let date = moment(upcomingRelease.release_date).format('dddd DD MMMM YYYY');
           let releaseDate = _.find(this.releaseDates, {'date': date});
-          releaseDate.releases.push(upcomingRelease)
+          if(releaseDate){
+            releaseDate.releases.push(upcomingRelease)
+          }
         }
       });
   }

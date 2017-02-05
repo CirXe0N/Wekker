@@ -26,22 +26,23 @@
 
       <div (click)="toggleProfileMenu()" class="profile-container">
         <div class="profile-image">
-          <img src="../../assets/images/profile-image-placeholder.jpg">
+          <img *ngIf="!user?.photo" src="../../assets/images/profile-image-placeholder.jpg">
+          <img *ngIf="user?.photo" src="{{ user.photo }}">
         </div>
         <i class="fa fa-caret-down" aria-hidden="true"></i>
       </div>
 
-      <div class="wekker-nav-title">
+      <div (click)="navigateToMain()" class="wekker-nav-title">
         WEKKER
       </div>
 
       <div [ngClass]="{'open-menu': isActiveProfileMenu}" class="profile-menu-container">
         <ul>
-          <li>
+          <li (click)="navigateToUserProfile()">
             Settings
             <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
           </li>
-          <li (click)="logout()">
+          <li (click)="utilities.logout()">
             Logout
             <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
           </li>
@@ -59,7 +60,7 @@
     <div class="content-container" [ngClass]="{'open-menu': isToggledCollectionSidebar || isToggledSearchSidebar}">
 
       <!--BANNER FOR UNVERIFIED USERS-->
-      <div *ngIf="!user?.is_verified" class="larger row columns">
+      <div *ngIf="user && !user?.is_verified" class="larger row columns">
         <div class="alert callout">
           <div>Your account is <strong>not</strong> verified. Check your inbox.</div>
           <div *ngIf="!isVerificationEmailSent">If you have not received an e-mail, <a (click)="resendVerificationEmail()">click here</a> to resend one.</div>

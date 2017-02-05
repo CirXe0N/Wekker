@@ -67,4 +67,13 @@ export class MainComponent implements OnInit {
 
     this.isVerificationEmailSent = true;
   }
+
+  private navigateToUserProfile(): void {
+    this.toggleProfileMenu();
+    this.router.navigate(['/main/user-profile/']);
+  }
+
+  private navigateToMain(): void {
+    this.router.navigate(['/main/']);
+  }
 }

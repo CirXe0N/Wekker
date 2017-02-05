@@ -37,17 +37,13 @@
                 <span *ngIf="!tvShow?.first_air_date"> -- </span>
                 <span *ngIf="tvShow?.first_air_date">{{ dates.convertToShortDate(tvShow?.first_air_date) }}</span>
               </div>
-              <div class="information">EPISODE RUNTIME
-                <span *ngIf="!tvShow?.episode_run_time"> -- </span>
-                <span *ngIf="tvShow?.episode_run_time"> {{ tvShow?.episode_run_time }} mins</span>
-              </div>
               <div class="information">COUNTRY
                 <span *ngIf="!tvShow?.origin_country"> -- </span>
                 <span *ngIf="tvShow?.origin_country"> {{ tvShow?.origin_country }} </span>
               </div>
               <div class="information">LANGUAGE
-                <span *ngIf="!tvShow?.language"> -- </span>
-                <span *ngIf="tvShow?.language"> {{ tvShow?.language }} </span>
+                <span *ngIf="!tvShow?.original_language"> -- </span>
+                <span *ngIf="tvShow?.original_language"> {{ tvShow?.original_language }} </span>
               </div>
               <div class="information">GENRES
                 <span *ngIf="!tvShow?.genres"> -- </span>
@@ -129,5 +125,5 @@
   </div>
 
   <episode-guide *ngIf="selectedPage == 'Episode Guide'" [seasons]="tvShow?.seasons"></episode-guide>
-  <crew-list *ngIf="selectedPage == 'Cast & Crew'"></crew-list>
+  <crew-list *ngIf="selectedPage == 'Cast & Crew'" [crewMembers]="tvShow?.crew" [castMembers]="tvShow?.cast" ></crew-list>
 </div>

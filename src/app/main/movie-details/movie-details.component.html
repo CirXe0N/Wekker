@@ -38,12 +38,12 @@
                 <span *ngIf="movie?.release_date">{{ dates.convertToShortDate(movie?.release_date) }}</span>
               </div>
               <div class="information"> RUNTIME
-                <span *ngIf="!movie?.run_time"> -- </span>
-                <span *ngIf="movie?.run_time"> {{ movie?.run_time }} mins</span>
+                <span *ngIf="!movie?.runtime"> -- </span>
+                <span *ngIf="movie?.runtime"> {{ movie?.runtime }} mins</span>
               </div>
               <div class="information">LANGUAGE
-                <span *ngIf="!movie?.language"> -- </span>
-                <span *ngIf="movie?.language"> {{ movie?.language }} </span>
+                <span *ngIf="!movie?.original_language"> -- </span>
+                <span *ngIf="movie?.original_language"> {{ movie?.original_language }} </span>
               </div>
               <div class="information">GENRES
                 <span *ngIf="!movie?.genres"> -- </span>
@@ -51,7 +51,7 @@
                   <span *ngIf="movie?.genres.length == 0"> -- </span>
                   <span *ngFor="let genre of movie?.genres; let last=last">
                     <span>
-                      {{ movie.name }}<span *ngIf="!last">,</span>
+                      {{ genre.name }}<span *ngIf="!last">,</span>
                     </span>
                   </span>
                 </span>

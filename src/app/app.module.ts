@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
@@ -29,6 +28,7 @@ import {AccountVerificationComponent} from "./account-verification/account-verif
 import {AccountRecoveryComponent} from "./account-recovery/account-recovery.component";
 import {SearchListComponent} from "./main/search-list/search-list.component";
 import {DatesService} from "../services/dates/dates.service";
+import {UserProfileComponent} from "./main/user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import {DatesService} from "../services/dates/dates.service";
     EpisodeGuideComponent,
     CrewListComponent,
     AccountVerificationComponent,
-    AccountRecoveryComponent
+    AccountRecoveryComponent,
+    UserProfileComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

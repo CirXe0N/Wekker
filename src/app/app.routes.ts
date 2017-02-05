@@ -7,6 +7,7 @@ import {TVShowDetailsComponent} from "./main/tv-show-details/tv-show-details.com
 import {AuthenticationGuard} from "../guards/authentication.guard";
 import {AccountVerificationComponent} from "./account-verification/account-verification.component";
 import {AccountRecoveryComponent} from "./account-recovery/account-recovery.component";
+import {UserProfileComponent} from "./main/user-profile/user-profile.component";
 
 export const appRoutes: Routes = [
   {
@@ -32,6 +33,9 @@ export const appRoutes: Routes = [
       },
       {
         path: 'tv-shows/:id', component: TVShowDetailsComponent
+      },
+      {
+        path: 'user-profile', component: UserProfileComponent
       }
    ]
   }

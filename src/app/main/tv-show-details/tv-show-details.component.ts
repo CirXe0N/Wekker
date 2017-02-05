@@ -67,11 +67,14 @@ export class TVShowDetailsComponent implements OnInit {
       value['tv_show_id'] =  this.tvShow.tv_show_id;
 
       this.wekker.doPostRequest('/recommendation/', value)
-        .subscribe(res => {
-          this.toggleRecommendation();
-          this.isRequestingRecommendation = false;
-          this.form.reset();
-        })
+        .subscribe(
+          res => {
+            this.toggleRecommendation();
+            this.isRequestingRecommendation = false;
+            this.form.reset();
+          },
+          err =>  this.isRequestingRecommendation = false
+        )
     }
   }
 

@@ -23,6 +23,10 @@ export class UtilitiesService {
     return this.user.asObservable().map(res => res);
   }
 
+  public setUser(user: User): void {
+    this.user.next(user);
+  }
+
   public getTVShowCollection(): Observable<CollectionTVShow[]> {
     this.wekker.doGetRequest('/collections/tv-shows/')
       .subscribe(res => this.tvShowCollection.next(res));

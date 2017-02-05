@@ -19,7 +19,7 @@ export interface TVShow {
 
 export interface Season {
   season_number: number;
-  episode_number: number;
+  episode_count: number;
   episodes: Episode[];
   is_watched: boolean;
 }
