@@ -1,0 +1,76 @@
+<div id="episode-guide" class="larger row">
+  <div class="large-2 columns">
+    <div *ngIf="seasons"  class="seasons-menu show-for-large">
+      <a *ngFor="let season of seasons" (click)="selectSeason(season)" [ngClass]="{'selected': selectedSeasonNumber == season?.season_number}" class="small button expanded">
+        Season {{ season?.season_number }} <i *ngIf="season.is_watched" class="fa fa-check fa-fw" aria-hidden="true"></i>
+        <span> {{ season?.episode_count }} Episodes </span>
+      </a>
+    </div>
+
+    <select #SeasonSelector *ngIf="seasons" (change)="selectSeason(seasons[SeasonSelector.value-1])" class="seasons-menu hide-for-large">
+      <option *ngFor="let season of seasons" [value]="season?.season_number">
+        <span *ngIf="season.is_watched">&#10004;</span> Season {{ season?.season_number }} ({{ season?.episode_number }} Episodes)
+      </option>
+    </select>
+  </div>
+  <div class="large-10 columns">
+    <table class="episode-container">
+      <tr *ngFor="let episode of selectedSeason?.episodes">
+        <td class="episode-number">
+          EPISODE
+          <span>{{episode.episode_number}}</span>
+        </td>
+        <td class="episode-information">
+          {{episode.name}}
+
+          <div class="air-date">
+          AIR DATE
+            <span *ngIf="!episode.air_date"> -- </span>
+            <span *ngIf="episode.air_date"> {{ dates.convertToShortDate(episode.air_date) }} </span>
+          </div>
+
+          <div class="description">
+            <span *ngIf="!episode?.overview">
+              No description available at this moment.
+            </span>
+            <span *ngIf="episode?.overview">
+              {{episode.overview}}
+            </span>
+          </div>
+
+          <a *ngIf="!episode.is_watched && checkAvailability(episode)" (click)="doUpdateWatchedEpisodeRequest(episode)" class="tiny not-watched button">
+            <span *ngIf="!episode.isRequestingWatched">
+              <i class="fa fa-times fa-fw" aria-hidden="true"></i>
+              Not Watched
+            </span>
+
+            <div *ngIf="episode.isRequestingWatched" class="loading">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+            </div>
+          </a>
+
+          <a *ngIf="episode.is_watched && checkAvailability(episode)" (click)="doUpdateWatchedEpisodeRequest(episode)" class="tiny watched button">
+            <span *ngIf="!episode.isRequestingWatched">
+              <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+              Watched
+            </span>
+
+            <div *ngIf="episode.isRequestingWatched" class="loading">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+            </div>
+          </a>
+
+          <a *ngIf="!checkAvailability(episode)" class="tiny disabled watched button">
+            Not Available
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

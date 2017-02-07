@@ -1,0 +1,132 @@
+<div *ngIf="isLoading" id="loading-page">
+  <div class="loading-container">
+    <div class="loading">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" id="user-profile">
+  <div class="larger row">
+    <div class="large-2 columns end">
+      <a [routerLink]="['/main']" class="small expanded button back-button">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Dashboard
+      </a>
+    </div>
+  </div>
+
+  <div class="larger row">
+    <div class="large-2 columns">
+      <div class="profile-menu show-for-large">
+        <a (click)="selectTab('Profile')" [ngClass]="{'selected': selectedTab == 'Profile'}" class="small button expanded">
+          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+          Profile
+        </a>
+
+        <a (click)="selectTab('Password')" [ngClass]="{'selected': selectedTab == 'Password'}" class="small button expanded">
+          <i class="fa fa-key" aria-hidden="true"></i>
+          Password
+        </a>
+      </div>
+
+      <select #tabSelector (change)="selectTab(tabSelector.value)" class="profile-menu hide-for-large">
+        <option value="Profile">Profile</option>
+        <option value="Password">Password</option>
+      </select>
+    </div>
+
+
+    <div class="large-push-1 large-2 columns end">
+      <div class="profile-content">
+        <div [formGroup]="profileForm" *ngIf="selectedTab == 'Profile'">
+          <img *ngIf="!user?.photo && !selectedProfilePhoto" src="../../../assets/images/profile-image-placeholder.jpg">
+          <img *ngIf="user?.photo && !selectedProfilePhoto" src="{{user?.photo}}">
+          <img *ngIf="selectedProfilePhoto" src="{{selectedProfilePhoto}}">
+
+          <input #fileInput type="file" class="hidden-file-field" (change)="selectProfilePhoto(fileInput.files[0])"/>
+          <a (click)="fileInput.click()" class="small button expanded">Change Profile Photo</a>
+
+          <div class="input-field">
+            <label>First Name</label>
+            <input type="text" [(ngModel)]="user.first_name" formControlName="first_name" maxlength="30">
+            <span *ngIf="profileForm.get('first_name').touched && profileForm.get('first_name').valid" class="fa fa-check success-validation"></span>
+          </div>
+
+          <div class="input-field">
+            <label>Last Name</label>
+            <input type="text" [(ngModel)]="user.last_name" formControlName="last_name" maxlength="30">
+            <span *ngIf="profileForm.get('last_name').touched && profileForm.get('last_name').valid" class="fa fa-check success-validation"></span>
+          </div>
+
+          <a *ngIf="!isRequestingProfile && !isSuccessfulProfileRequest" (click)="doSaveProfileRequest(profileForm)" class="small button expanded">
+           Save Changes
+          </a>
+
+          <a *ngIf="isRequestingProfile && !isSuccessfulProfileRequest" class="medium hollow expanded button is-active">
+            <div class="loading">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+            </div>
+          </a>
+
+          <!-- Disabled button after a successful request -->
+          <a *ngIf="isSuccessfulProfileRequest" class="medium hollow expanded button is-active">
+            <div class="successful">
+              <i class="fa fa-check" aria-hidden="true"></i> Changes Saved!
+            </div>
+          </a>
+        </div>
+
+        <div [formGroup]="passwordForm" *ngIf=" selectedTab == 'Password'">
+          <div class="input-field">
+            <label>Old Password</label>
+            <input type="password" formControlName="old_password" maxlength="30">
+            <span *ngIf="passwordForm.get('old_password').touched && passwordForm.get('old_password').valid" class="fa fa-check success-validation"></span>
+          </div>
+
+          <div class="input-field">
+            <label>New Password</label>
+            <input type="password" formControlName="password" maxlength="30">
+            <span *ngIf="passwordForm.get('password').touched && passwordForm.get('password').valid" class="fa fa-check success-validation"></span>
+          </div>
+
+          <div class="input-field">
+            <label>Verify Password</label>
+            <input type="password" formControlName="repeatPassword" maxlength="30">
+            <span *ngIf="passwordForm.get('repeatPassword').touched && passwordForm.valid" class="fa fa-check success-validation"></span>
+          </div>
+
+          <a *ngIf="!isRequestingPassword && !isSuccessfulPasswordRequest" (click)="doSavePasswordRequest(passwordForm)" class="small button expanded">
+            Save Changes
+          </a>
+
+          <a *ngIf="isRequestingPassword && !isSuccessfulPasswordRequest" class="medium hollow expanded button is-active">
+            <div class="loading">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+            </div>
+          </a>
+
+          <!-- Disabled button after a successful request -->
+          <a *ngIf="isSuccessfulPasswordRequest" class="medium hollow expanded button is-active">
+            <div class="successful">
+              <i class="fa fa-check" aria-hidden="true"></i> Changes Saved!
+            </div>
+          </a>
+        </div>
+
+        <div *ngIf="requestError?.old_password" class="alert callout">
+          {{requestError?.old_password}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div *ngIf="isLoading" id="loading-page">
+  <div class="loading-container">
+    <div class="loading">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" id="tv-shows-details">
+  <div class="larger row">
+    <div class="large-2 columns end">
+      <a [routerLink]="['/main']" class="small expanded button back-button">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Dashboard
+      </a>
+    </div>
+  </div>
+  <div class="larger row">
+    <div class="large-9 columns">
+      <div class="media-object stack-for-small">
+        <div class="media-object-section">
+          <div class="thumbnail hide-for-small-only">
+            <img *ngIf="tvShow?.poster" [src]="tvShow?.poster">
+            <img *ngIf="!tvShow?.poster" src="../../../assets/images/poster-placeholder.jpg">
+          </div>
+        </div>
+        <div class="media-object-section">
+          <div class="information-container columns">
+            <div class="row">
+              <div class="title">{{ tvShow?.name }}</div>
+            </div>
+            <div class="row">
+              <div class="information">PREMIERED
+                <span *ngIf="!tvShow?.first_air_date"> -- </span>
+                <span *ngIf="tvShow?.first_air_date">{{ dates.convertToShortDate(tvShow?.first_air_date) }}</span>
+              </div>
+              <div class="information">COUNTRY
+                <span *ngIf="!tvShow?.origin_country"> -- </span>
+                <span *ngIf="tvShow?.origin_country"> {{ tvShow?.origin_country }} </span>
+              </div>
+              <div class="information">LANGUAGE
+                <span *ngIf="!tvShow?.original_language"> -- </span>
+                <span *ngIf="tvShow?.original_language"> {{ tvShow?.original_language }} </span>
+              </div>
+              <div class="information">GENRES
+                <span *ngIf="!tvShow?.genres"> -- </span>
+                <span *ngIf="tvShow?.genres">
+                  <span *ngIf="tvShow?.genres.length == 0"> -- </span>
+                  <span *ngFor="let genre of tvShow?.genres; let last=last">
+                    <span>
+                      {{ genre.name }}<span *ngIf="!last">,</span>
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="description">
+                DESCRIPTION
+                <span *ngIf="!tvShow?.overview">
+                  No description available at this moment.
+                </span>
+                <span *ngIf="tvShow?.overview">
+                  {{ tvShow?.overview}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="options-container large-3 columns">
+      <a class="small expanded button" [ngClass]="{'is-active': tvShow?.is_collection_item}" (click)="doToggleCollectionItemRequest()">
+        <span *ngIf="!tvShow?.is_collection_item">
+          <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+          Add to collection
+        </span>
+        <span *ngIf="tvShow?.is_collection_item">
+          <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+          Added to collection
+        </span>
+        <div *ngIf="isRequestingCollectionItem" class="pull-right">
+          <div class="loading" [ngClass]="{'light': !tvShow?.is_collection_item}">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+          </div>
+        </div>
+      </a>
+      <div class="recommendation-container">
+        <a (click)="toggleRecommendation()" [ngClass]="{'is-active': isRecommendationToggled}" class="small expanded button">
+          <i class="fa fa-share fa-fw" aria-hidden="true"></i> Recommend to a Friend
+        </a>
+
+        <div [ngClass]="{'is-open': isRecommendationToggled}" class="recommendation">
+          <div class="recommendation-input-group">
+            <div [formGroup]="form" (keyup.enter)="doSendRecommendationRequest(form)" class="input-field">
+              <input type="text" formControlName="recipient" placeholder="Friends' E-mail">
+              <a *ngIf="!isRequestingRecommendation" (click)="doSendRecommendationRequest(form)" class="medium hollow expanded button">Send Recommendation</a>
+
+              <a *ngIf="isRequestingRecommendation" class="medium hollow expanded button is-active">
+                <div class="loading">
+                  <div class="rect1"></div>
+                  <div class="rect2"></div>
+                  <div class="rect3"></div>
+                  <div class="rect4"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="larger row">
+    <div class="section-selector large-push-9 large-3 columns">
+      <a (click)="selectPage('Episode Guide')" [ngClass]="{'selected': selectedPage == 'Episode Guide'}" class="small small-6 column button"> Episodes Guide </a>
+      <a (click)="selectPage('Cast & Crew')" [ngClass]="{'selected': selectedPage == 'Cast & Crew'}" class="small small-6 column button"> Cast & Crew </a>
+    </div>
+  </div>
+
+  <episode-guide *ngIf="selectedPage == 'Episode Guide'" [seasons]="tvShow?.seasons"></episode-guide>
+  <crew-list *ngIf="selectedPage == 'Cast & Crew'" [crewMembers]="tvShow?.crew" [castMembers]="tvShow?.cast" ></crew-list>
+</div>

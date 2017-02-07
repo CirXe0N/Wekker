@@ -1,0 +1,139 @@
+<div *ngIf="isLoading" id="loading-page">
+  <div class="loading-container">
+    <div class="loading">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" id="movies-details">
+  <div class="larger row">
+    <div class="large-2 columns end">
+      <a [routerLink]="['/main']" class="small expanded button back-button">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Dashboard
+      </a>
+    </div>
+  </div>
+  <div class="larger row information-block">
+    <div class="large-9 columns">
+      <div class="media-object stack-for-small">
+        <div class="media-object-section">
+          <div class="thumbnail hide-for-small-only">
+            <img *ngIf="movie?.poster" [src]="movie?.poster">
+            <img *ngIf="!movie?.poster" src="../../../assets/images/poster-placeholder.jpg">
+          </div>
+        </div>
+        <div class="media-object-section">
+          <div class="information-container columns">
+            <div class="row">
+              <div class="title">{{ movie?.name }}</div>
+            </div>
+            <div class="row">
+              <div class="information">PREMIERED
+                <span *ngIf="!movie?.release_date"> -- </span>
+                <span *ngIf="movie?.release_date">{{ dates.convertToShortDate(movie?.release_date) }}</span>
+              </div>
+              <div class="information"> RUNTIME
+                <span *ngIf="!movie?.runtime"> -- </span>
+                <span *ngIf="movie?.runtime"> {{ movie?.runtime }} mins</span>
+              </div>
+              <div class="information">LANGUAGE
+                <span *ngIf="!movie?.original_language"> -- </span>
+                <span *ngIf="movie?.original_language"> {{ movie?.original_language }} </span>
+              </div>
+              <div class="information">GENRES
+                <span *ngIf="!movie?.genres"> -- </span>
+                <span *ngIf="movie?.genres">
+                  <span *ngIf="movie?.genres.length == 0"> -- </span>
+                  <span *ngFor="let genre of movie?.genres; let last=last">
+                    <span>
+                      {{ genre.name }}<span *ngIf="!last">,</span>
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="description">
+                DESCRIPTION
+                <span *ngIf="!movie?.overview">
+                  No description available at this moment.
+                </span>
+                <span *ngIf="movie?.overview">
+                  {{ movie?.overview}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="options-container large-3 columns">
+      <a class="small expanded button" [ngClass]="{'is-active': movie?.is_collection_item}" (click)="doToggleCollectionItemRequest()">
+        <span *ngIf="!movie?.is_collection_item">
+          <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+          Add to collection
+        </span>
+        <span *ngIf="movie?.is_collection_item">
+          <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+          Added to collection
+        </span>
+        <div *ngIf="isRequestingCollectionItem" class="pull-right">
+          <div class="loading" [ngClass]="{'light': !movie?.is_collection_item}">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+          </div>
+        </div>
+      </a>
+      <a class="small expanded button" [ngClass]="{'is-active': movie?.is_watched}" (click)="doToggleWatchedRequest()">
+        <span *ngIf="!movie?.is_watched">
+          <i class="fa fa-eye fa-fw" aria-hidden="true"></i>
+          Not Watched
+        </span>
+        <span *ngIf="movie?.is_watched">
+          <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+          Watched
+        </span>
+        <div *ngIf="isRequestingWatchedItem" class="pull-right">
+          <div class="loading" [ngClass]="{'light': !movie?.is_watched}">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+          </div>
+        </div>
+      </a>
+      <div class="recommendation-container">
+        <a (click)="toggleRecommendation()" [ngClass]="{'is-active': isRecommendationToggled}" class="small expanded button">
+          <i class="fa fa-share fa-fw" aria-hidden="true"></i> Recommend to a Friend
+        </a>
+
+        <div [ngClass]="{'is-open': isRecommendationToggled}" class="recommendation">
+          <div class="recommendation-input-group">
+            <div [formGroup]="form" (keyup.enter)="doSendRecommendationRequest(form)" class="input-field">
+              <input type="text" formControlName="recipient" placeholder="Friends' E-mail">
+              <a *ngIf="!isRequestingRecommendation" (click)="doSendRecommendationRequest(form)" class="medium hollow expanded button">Send Recommendation</a>
+
+              <a *ngIf="isRequestingRecommendation" class="medium hollow expanded button is-active">
+                <div class="loading">
+                  <div class="rect1"></div>
+                  <div class="rect2"></div>
+                  <div class="rect3"></div>
+                  <div class="rect4"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <crew-list [castMembers]="movie?.cast" [crewMembers]="movie?.crew"></crew-list>
+</div>

@@ -1,0 +1,46 @@
+<div id="watch-list">
+  <table *ngIf="watchList.length == 0">
+    <tr>
+      <td class="empty-list">
+        <div><i class="fa fa-smile-o" aria-hidden="true"></i></div>
+        You are up to date with your TV Shows.
+      </td>
+    </tr>
+  </table>
+
+  <h1 *ngIf="watchList.length > 0">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+    Have you watched these?
+  </h1>
+
+  <table *ngFor="let item of watchList">
+    <tr>
+      <td colspan="3">
+        <div class="title">{{item.tv_show}}</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="episode-number">
+        S{{utilities.addZeroToSingleDigit(item.season_number)}}E{{utilities.addZeroToSingleDigit(item.episode_number)}}
+      </td>
+      <td class="episode-name">{{item.name}}</td>
+      <td class="episode-options">
+        <a (click)="doUpdateWatchedEpisodeRequest(item)" class="button pull-right">
+          <span *ngIf="!item.isRequestingWatched">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            Yes?
+          </span>
+
+          <div *ngIf="item.isRequestingWatched" class="loading">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+          </div>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+

@@ -1,0 +1,97 @@
+<div id="collection-container" [ngClass]="{'open-menu': isOpen, 'toggled-menu': isToggled}">
+  <div class="collection-selector">
+    <div class="title">
+      My Collection
+    </div>
+    <div class="row">
+      <a (click)="selectTvShowCollection()" [ngClass]="{'selected': selectedListType == 'TV Shows'}" class="small small-6 column button"> TV Shows </a>
+      <a (click)="selectMovieCollection()"  [ngClass]="{'selected': selectedListType == 'Movies'}" class="small small-6 column button" > Movies </a>
+    </div>
+  </div>
+
+  <div *ngIf="collectionList.length == 0" class="empty-list">
+    <div *ngIf="!isRequestingCollection">
+      <div><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></div>
+      <div>
+        There are no
+        <span *ngIf="selectedListType == 'TV Shows'">TV Shows</span>
+        <span *ngIf="selectedListType == 'Movies'">Movies</span>
+        in your collection.
+      </div>
+    </div>
+    <div *ngIf="isRequestingCollection">
+      <div class="loading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="collectionList.length > 0">
+
+    <!-- TV SHOWS COLLECTION -->
+    <ul *ngIf="selectedListType == 'TV Shows'" class="collection-list">
+      <li *ngFor="let tvShow of collectionList" (click)="nagivateToMediaDetails(tvShow)">
+        <img *ngIf="tvShow?.poster" [src]="tvShow?.poster">
+        <img *ngIf="!tvShow?.poster" src="../../../assets/images/poster-placeholder.jpg">
+
+        <div class="item-information">
+          <div class="title"> {{tvShow.name}} </div>
+          <div class="status"> Status: <span>{{tvShow.status}}</span></div>
+
+          <div class="tv-show-information">
+            <div> Last seen episode:
+              <span *ngIf="!tvShow.last_seen_episode">
+                --
+              </span>
+              <span *ngIf="tvShow.last_seen_episode">
+                S{{utilities.addZeroToSingleDigit(tvShow.last_seen_episode.season_number)}}
+                E{{utilities.addZeroToSingleDigit(tvShow.last_seen_episode.episode_number)}}
+              </span>
+            </div>
+            <div> Last released episode:
+              <span *ngIf="!tvShow.last_released_episode">
+                --
+              </span>
+              <span *ngIf="tvShow.last_released_episode">
+                S{{utilities.addZeroToSingleDigit(tvShow.last_released_episode.season_number)}}
+                E{{utilities.addZeroToSingleDigit(tvShow.last_released_episode.episode_number)}}
+              </span>
+            </div>
+          </div>
+
+          <div class="badges">
+            <div *ngIf="checkWatchProgress(tvShow)" class="success badge"> Up-to-date </div>
+            <div *ngIf="!checkWatchProgress(tvShow)" class="alert badge"> New Episode(s) </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <!-- MOVIES COLLECTION -->
+    <ul *ngIf="selectedListType == 'Movies'" class="collection-list">
+      <li *ngFor="let movie of collectionList" (click)="nagivateToMediaDetails(movie)">
+        <img *ngIf="movie?.poster" [src]="movie?.poster">
+        <img *ngIf="!movie?.poster" src="../../../assets/images/poster-placeholder.jpg">
+
+        <div class="item-information">
+          <div class="title"> {{movie?.name}} </div>
+          <div class="status"> Status:
+            <span *ngIf="!movie?.status"> -- </span>
+            <span *ngIf="movie?.status">{{movie.status}}</span>
+          </div>
+          <div class="status"> Release date:
+            <span *ngIf="!movie?.release_date"> -- </span>
+            <span *ngIf="movie?.release_date">{{ dates.convertToShortDate(movie.release_date) }}</span>
+          </div>
+          <div class="badges">
+            <div *ngIf="!movie?.is_watched" class="alert badge"> Not Watched </div>
+            <div *ngIf="movie?.is_watched" class="success badge"> Watched </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

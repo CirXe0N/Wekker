@@ -1,0 +1,211 @@
+#tv-shows-details
+  a.button
+    background-color: rgba(0, 0, 0, 0.1)
+    color: #FFF
+
+    &:hover
+      background-color: #FFF
+      color: #333
+
+    &.selected
+      background-color: #FFF
+      color: #333
+      cursor: default
+
+    .loading
+      margin: 0 auto
+      height: 15px
+      text-align: center
+
+      div
+        background-color: #525252
+        height: 100%
+        width: 4px
+        display: inline-block
+        -webkit-animation: loader-animation 1.2s infinite ease-in-out
+        animation: loader-animation 1.2s infinite ease-in-out
+
+        &.rect2
+          -webkit-animation-delay: -1.1s
+          animation-delay: -1.1s
+
+        &.rect3
+          -webkit-animation-delay: -1.0s
+          animation-delay: -1.0s
+
+        &.rect4
+          -webkit-animation-delay: -0.9s
+          animation-delay: -0.9s
+
+      &.light div
+        background-color: #FFFFFF
+
+      @-webkit-keyframes loader-animation
+        0%, 40%, 100%
+          -webkit-transform: scaleY(0.4)
+
+        20%
+          -webkit-transform: scaleY(1.0)
+
+      @keyframes loader-animation
+        0%, 40%, 100%
+          transform: scaleY(0.4)
+
+        20%
+          transform: scaleY(1.0)
+
+  .back-button.expanded
+    width: 134px
+
+    @media screen and (max-width: 39.9375em)
+      width: 100%
+
+  .media-object-section
+    img
+      max-width: 125px
+
+  .information-container
+    .information
+      display: inline-block
+      font-size: 0.7rem
+      color: rgba(255, 255, 255, 0.6)
+      font-weight: 700
+      text-transform: uppercase
+
+      span
+        font-size: 0.8rem
+        color: #FFF
+        font-weight: 400
+        text-transform: none
+
+      &:last-child
+        padding-bottom: 1rem
+
+    .title
+      font-size: 1.5rem
+      color: #FFF
+
+    .description
+      font-size: 0.7rem
+      color: rgba(255, 255, 255, 0.6)
+      font-weight: 700
+      margin-bottom: 1rem
+
+      span
+        text-align: justify
+        display: block
+        font-size: 0.8rem
+        color: #FFF
+        font-weight: 400
+
+  .options-container
+    a.button
+      text-align: left
+      margin-bottom: 0.2rem
+
+      &.is-active
+        background-color: #FFF
+        color: #333
+
+        &:hover
+          background-color: rgba(0, 0, 0, 0.1)
+          color: #FFF
+
+        i
+          color: #229b35
+
+  .section-selector
+    margin-top: 1rem
+    margin-bottom: 1rem
+
+    a.button
+      border: 1px solid #FFF
+
+  .recommendation-container
+    position: relative
+
+    .recommendation
+      height: 0
+      overflow: hidden
+      transition: height 0.5s
+      font-size: 0.9rem
+      background-color: rgba(0, 0, 0, 0.1)
+      color: #FFF
+
+      &.is-open
+        height: 110px
+
+      .recommendation-input-group
+        padding: 0.85rem 0.75rem
+
+        input
+          font-size: 0.75rem
+          line-height: 0.5rem
+          color: #afb1be
+          background-color: rgba(51, 51, 51, 0.5)
+          border: 1px solid #525252
+          box-shadow: none
+          outline: none
+          padding-top: 0.15rem
+          padding-bottom: 0.15rem
+          height: 30px
+
+          &::-webkit-input-placeholder
+            color: #525252
+
+        a
+          border: 1px solid #FFF
+          font-size: 0.75rem
+          text-align: center
+
+          &.is-active
+            background-color: #FFF
+            cursor: default
+
+#loading-page
+  display: table
+  width: 100%
+  height: 100%
+
+  .loading-container
+    display: table-cell
+    vertical-align: middle
+
+    .loading
+      margin: 0 auto
+      height: 40px
+      text-align: center
+
+      div
+        background-color: #FFFFFF
+        height: 100%
+        width: 6px
+        display: inline-block
+        -webkit-animation: loader-animation 1.2s infinite ease-in-out
+        animation: loader-animation 1.2s infinite ease-in-out
+
+        &.rect2
+          -webkit-animation-delay: -1.1s
+          animation-delay: -1.1s
+
+        &.rect3
+          -webkit-animation-delay: -1.0s
+          animation-delay: -1.0s
+
+        &.rect4
+          -webkit-animation-delay: -0.9s
+          animation-delay: -0.9s
+
+      @-webkit-keyframes loader-animation
+        0%, 40%, 100%
+          -webkit-transform: scaleY(0.4)
+
+        20%
+          -webkit-transform: scaleY(1.0)
+
+      @keyframes loader-animation
+        0%, 40%, 100%
+          transform: scaleY(0.4)
+
+        20%
+          transform: scaleY(1.0)

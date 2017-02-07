@@ -1,0 +1,137 @@
+#collection-container
+  position: fixed
+  background-color: rgba(255, 255, 255, 0.10)
+  width: 350px
+  transition: 0.5s
+  z-index: 9999
+  bottom: 0
+  top: 50px
+  overflow-y: auto
+  margin-left: -100%
+
+  &::-webkit-scrollbar
+    display: none
+
+  @media screen and (max-width: 63.9375em)
+    width: 100%
+
+    &.toggled-menu
+      margin-left: 0
+
+  @media screen and (min-width: 64em)
+    &.open-menu
+      margin-left: 0
+
+  .empty-list
+    position: absolute
+    text-align: center
+    width: 100%
+    top: 45%
+    font-size: 0.9rem
+    color: #828282
+
+    .loading
+      margin: 0 auto
+      height: 45px
+      text-align: center
+
+      &.invisible
+       visibility: collapse
+
+      div
+        background-color: #828282
+        height: 100%
+        width: 6px
+        display: inline-block
+        -webkit-animation: loader-animation 1.2s infinite ease-in-out
+        animation: loader-animation 1.2s infinite ease-in-out
+
+        &.rect2
+          -webkit-animation-delay: -1.1s
+          animation-delay: -1.1s
+
+        &.rect3
+          -webkit-animation-delay: -1.0s
+          animation-delay: -1.0s
+
+        &.rect4
+          -webkit-animation-delay: -0.9s
+          animation-delay: -0.9s
+
+  .collection-selector
+    padding: 0.5rem
+
+    .title
+      width: 100%
+      background-color: rgba(255, 255, 255, 0.1)
+      text-align: center
+      color: #FFFFFF
+      padding: 0.4rem
+      font-size: 0.9rem
+      letter-spacing: 0.3rem
+      margin-bottom: 0.6rem
+
+    a.button
+      border: 1px solid #FFF
+      background-color: transparent
+      color: #FFF
+      margin-bottom: 0
+
+      &.selected
+        background-color: #FFFFFF
+        color: #333
+        cursor: default
+
+      &:hover
+        background-color: #FFFFFF
+        color: #333
+
+  .collection-list
+    list-style: none
+    margin: 0
+
+    li
+      padding: 0.8rem 0.5rem
+      border-bottom: 1px solid #333
+
+      &:hover
+        cursor: pointer
+        background-color: rgba(255, 255, 255, 0.12)
+
+    img
+      width: 65px
+      height: 95px
+
+    .item-information
+      position: relative
+      display: inline-block
+      color: #FFFFFF
+      vertical-align: top
+      height: 95px
+      min-width: 200px
+
+      .title
+        font-size: 1.1rem
+        line-height: 0.8rem
+        margin-bottom: 0.45rem
+        font-weight: 700
+
+      .badges
+        font-size: 0.7rem
+        position: absolute
+        bottom: 0
+
+        .badge
+          border-radius: 0
+          padding: 0.1rem 0.3rem
+          color: #FFF
+
+          &.success
+            background-color: #229b35
+
+      .movie-information, .tv-show-information, .status
+        font-size: 0.7rem
+        font-weight: 400
+
+        span
+          font-weight: 700

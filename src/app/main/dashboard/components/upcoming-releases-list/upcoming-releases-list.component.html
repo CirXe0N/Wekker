@@ -1,0 +1,29 @@
+<div id="upcoming-releases-container">
+  <h1>
+    <i class="fa fa-calendar" aria-hidden="true"></i>
+    Upcoming releases
+  </h1>
+
+  <div *ngFor="let releaseDate of releaseDates">
+    <h2> {{ releaseDate.date }} </h2>
+
+    <div *ngIf="releaseDate.releases.length == 0" class="empty-list"> No releases planned for this day.</div>
+
+    <div *ngFor="let release of releaseDate.releases" class="item" (click)="nagivateToMediaDetails(release)">
+      <img *ngIf="release.poster" [src]="release.poster">
+      <img *ngIf="!release.poster" src="../../../../assets/images/poster-placeholder.jpg">
+
+      <div *ngIf="release.type == 'Movie'" class="item-information">
+        <div class="title">{{ release.name }}</div>
+        <div> Movie </div>
+      </div>
+
+      <div *ngIf="release.type == 'TV Show'" class="item-information">
+        <div class="title">
+          {{ release.tv_show }}
+        </div>
+        <span class="episode-title"> Season <span>{{ release.season_number }}</span> - Episode <span>{{ release.episode_number }}</span> </span>
+      </div>
+    </div>
+  </div>
+</div>

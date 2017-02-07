@@ -1,0 +1,74 @@
+<div id="main">
+  <div class="background-layer">
+
+    <!--NAVIGATION BAR-->
+    <div class="top-bar">
+
+      <!--DESKTOP-->
+      <div (click)="openCollectionSidebar()" class="show-for-large collection-toggle-button" [ngClass]="{'active': isOpenCollectionSidebar}">
+        <i class="fa fa-film fa-fw" aria-hidden="true"></i>
+      </div>
+
+      <div (click)="openSearchSidebar()" class="show-for-large search-toggle-button" [ngClass]="{'active': isOpenSearchSidebar}">
+        <i class="fa fa-search fa-fw" aria-hidden="true"></i>
+      </div>
+
+      <!--MOBILE-->
+      <div (click)="toggleCollectionSidebar()" class="hide-for-large collection-toggle-button" [ngClass]="{'active': isToggledCollectionSidebar}">
+        <i class="fa fa-film fa-fw" aria-hidden="true"></i>
+      </div>
+
+      <div (click)="toggleSearchSidebar()" class="hide-for-large search-toggle-button" [ngClass]="{'active': isToggledSearchSidebar}">
+        <i class="fa fa-search fa-fw" aria-hidden="true"></i>
+      </div>
+
+
+
+      <div (click)="toggleProfileMenu()" class="profile-container">
+        <div class="profile-image">
+          <img *ngIf="!user?.photo" src="../../assets/images/profile-image-placeholder.jpg">
+          <img *ngIf="user?.photo" src="{{ user.photo }}">
+        </div>
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+      </div>
+
+      <div (click)="navigateToMain()" class="wekker-nav-title">
+        WEKKER
+      </div>
+
+      <div [ngClass]="{'open-menu': isActiveProfileMenu}" class="profile-menu-container">
+        <ul>
+          <li (click)="navigateToUserProfile()">
+            Settings
+            <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+          </li>
+          <li (click)="utilities.logout()">
+            Logout
+            <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--COLLECTION LIST-->
+    <collection-list [isOpen]="isOpenCollectionSidebar" [isToggled]="isToggledCollectionSidebar" (isToggledChange)="toggleCollectionSidebar()"></collection-list>
+
+    <!--SEARCH LIST-->
+    <search-list [isOpen]="isOpenSearchSidebar" [isToggled]="isToggledSearchSidebar" (isToggledChange)="toggleSearchSidebar()"></search-list>
+
+    <!--CONTENT CONTAINER-->
+    <div class="content-container" [ngClass]="{'open-menu': isToggledCollectionSidebar || isToggledSearchSidebar}">
+
+      <!--BANNER FOR UNVERIFIED USERS-->
+      <div *ngIf="user && !user?.is_verified" class="larger row columns">
+        <div class="alert callout">
+          <div>Your account is <strong>not</strong> verified. Check your inbox.</div>
+          <div *ngIf="!isVerificationEmailSent">If you have not received an e-mail, <a (click)="resendVerificationEmail()">click here</a> to resend one.</div>
+          <div *ngIf="isVerificationEmailSent">A verification e-mail has been sent!</div>
+        </div>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
