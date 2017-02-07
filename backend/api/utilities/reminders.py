@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta
+from django.utils import timezone
 from api import tasks
 from api.models import TVShowEpisode, TVShow, Movie
 
 
 def get_scheduled_tv_shows():
-    now = datetime.now()
+    now = timezone.now()
     tv_show_episodes = TVShowEpisode.objects.filter(air_date__range=(now, now + timedelta(hours=1)))
 
     tv_shows_sent = []

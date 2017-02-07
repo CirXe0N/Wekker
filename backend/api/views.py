@@ -1,7 +1,8 @@
 import difflib
 from datetime import datetime, timezone, timedelta
+from dateutil.tz import tzutc
+from django.utils import timezone
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from rest_framework import authentication
 from rest_framework import status
@@ -96,7 +97,7 @@ class AccountRecoveryView(APIView):
         try:
             profile = UserProfile.objects.get(password_recovery_token=token)
 
-            if abs(datetime.now(timezone.utc) - profile.password_recovery_at).seconds < 1800:
+            if abs(timezone.now() - profile.password_recovery_at).seconds < 1800:
                 profile.password_recovery_at = None
                 profile.password_recovery_token = None
                 profile.save()
@@ -218,9 +219,9 @@ class DashboardUpcomingReleasesView(APIView):
         request_date = request.query_params.get('date', None)
 
         if request_date:
-            start_date = datetime.fromtimestamp(float(request_date)/1000)
+            start_date = datetime.fromtimestamp(float(request_date)/1000, tzutc())
         else:
-            start_date = datetime.now(timezone.utc)
+            start_date = timezone.now()
 
         upcoming_episodes = TVShowEpisode.objects.filter(season__tv_show__collectors=profile,
                                                          air_date__range=(start_date, start_date + timedelta(days=7)))
@@ -251,7 +252,7 @@ class DashboardWatchListView(APIView):
         if request_date:
             start_date = datetime.fromtimestamp(float(request_date)/1000)
         else:
-            start_date = datetime.now(timezone.utc)
+            start_date = timezone.now()
 
         watch_list = []
         for tv_show in profile.tv_shows.all():

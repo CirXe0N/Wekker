@@ -1,7 +1,6 @@
 import base64
-from datetime import datetime
+from django.utils import timezone
 from io import BytesIO
-
 from PIL import Image
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
@@ -69,7 +68,7 @@ class TVShowCollectionSerializer(serializers.ModelSerializer):
         }
 
     def get_last_released_episode(self, obj):
-        start_date = datetime.now()
+        start_date = timezone.now()
         episode = TVShowEpisode.objects.filter(season__tv_show=obj,
                                                air_date__lte=start_date).last()
         if not episode:

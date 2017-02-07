@@ -1,13 +1,7 @@
 import threading
 import uuid
-from datetime import datetime
-from email.mime.image import MIMEImage
-
+from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.staticfiles import finders
-from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.core.files import File
-from django.core.files.base import ContentFile
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from Wekker_API.utilities.env_reader import get_env
@@ -35,7 +29,7 @@ def send_reset_password_email(recipient):
     try:
         user = User.objects.get(email=recipient)
         profile = UserProfile.objects.get(user=user)
-        profile.password_recovery_at = datetime.now()
+        profile.password_recovery_at = timezone.now()
         profile.password_recovery_token = uuid.uuid4()
         profile.save()
 
