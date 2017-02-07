@@ -192,3 +192,5 @@ fabric.properties
 ### Sass template
 .sass-cache/
 *.css.map
+
+/docker/nginx/certificates

@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  backend:
+    restart: always
+    container_name: WekkerBackend
+    build: ./backend
+    env_file: ./backend.env
+    command: ./run_backend.sh
+    volumes:
+      - ./logs:/logs
+      - ./backend:/app
+    links:
+      - redis
+      - celery
+  
+  frontend:
+    restart: always
+    container_name: WekkerFrontend
+    build: ./frontend
+    volumes:
+      - ./logs:/logs
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - backend
+    depends_on:
+      - backend
+
+  redis:
+    restart: always
+    container_name: WekkerRedis
+    image: redis:latest
+    # ports:
+    #   - "6379:6379"
+
+  celery:
+    restart: always
+    container_name: WekkerCelery
+    build: ./backend
+    env_file: ./backend.env
+    command: ./run_celery.sh
+    volumes:
+      - ./backend:/app
+    links:
+      - redis
+    depends_on:
+      - redis
