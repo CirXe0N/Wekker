@@ -23,9 +23,6 @@
 : "${IMPORT_MEDIA_DATA:? You must set IMPORT_MEDIA_DATA (NO, YES)}"
 : "${IMPORT_STATIC_FILE:? You must set IMPORT_STATIC_FILE (NO, YES)}"
 
-# Change to app directory
-# cd app
-
 # Update Database Schema
 echo '----MIGRATING DATABASE----'
 python ./manage.py migrate --noinput
@@ -48,7 +45,4 @@ then
 fi	
 
 # Start Gunicorn
-gunicorn Wekker_API.wsgi:application -w 5 -b 0.0.0.0:8080
-
-# Start Celery Beat
-# celery -A Wekker_API beat
+gunicorn Wekker_API.wsgi:application -w 5 -b 0.0.0.0:8080 --log-file /logs/gunicorn-error.log --log-level error

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'post_office',
     'api'
 ]
 
@@ -131,7 +132,7 @@ REST_FRAMEWORK = {
 ADMINS = [(get_env('ADMIN_NAME'), get_env('ADMIN_EMAIL_ADDRESS'))]
 
 # SMTP Credentials
-
+EMAIL_BACKEND = 'post_office.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = get_env('EMAIL_HOST')
 EMAIL_PORT = get_env('EMAIL_PORT')
