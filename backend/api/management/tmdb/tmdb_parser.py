@@ -4,8 +4,9 @@ from api.models import TVShow, TVShowSeason, TVShowEpisode, TVShowCrewMember, TV
     MovieSources, MovieCastMember, MovieCrewMember
 
 
-def parse_tv_show_data(tv_show_data):
+def parse_tv_show_data(media_count, tv_show_data):
     tv_show = TVShow()
+    tv_show.id = media_count
     tv_show.name = tv_show_data['name']
     tv_show.overview = tv_show_data['overview']
     tv_show.status = tv_show_data['status']
@@ -15,9 +16,6 @@ def parse_tv_show_data(tv_show_data):
     tv_show.origin_country = 'United States'
     tv_show.episode_count = tv_show_data['number_of_episodes']
     tv_show.season_count = tv_show_data['number_of_seasons']
-    if tv_show_data['poster_path']:
-        tv_show.poster.save('poster.jpg', ContentFile(get_image('w185', tv_show_data['poster_path']).getvalue()))
-    tv_show.save()
     return tv_show
 
 
@@ -25,8 +23,7 @@ def parse_tv_show_season_data(tv_show, season_data):
     season = TVShowSeason()
     season.season_number = season_data['season_number']
     season.episode_count = len(season_data['episodes'])
-    season.tv_show = tv_show
-    season.save()
+    season.tv_show_id = tv_show.id
     return season
 
 
@@ -36,8 +33,6 @@ def parse_tv_show_episodes_data(season, episode_data):
     episode.episode_number = episode_data['episode_number']
     episode.name = episode_data.get('name')
     episode.overview = episode_data.get('overview')
-    episode.season = season
-    episode.save()
     return episode
 
 
@@ -72,8 +67,7 @@ def parse_tv_show_sources_data(tv_show, tv_show_id, sources_data):
     sources.freebase_id = sources_data.get('freebase_id', None)
     sources.tvdb_id = sources_data.get('tvdb_id', None)
     sources.tvrage_id = sources_data.get('tvrage_id', None)
-    sources.tv_show = tv_show
-    sources.save()
+    sources.tv_show.id = tv_show.id
     return sources
 
 

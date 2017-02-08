@@ -23,8 +23,5 @@
 : "${IMPORT_MEDIA_DATA:? You must set IMPORT_MEDIA_DATA (NO, YES)}"
 : "${IMPORT_STATIC_FILE:? You must set IMPORT_STATIC_FILE (NO, YES)}"
 
-# Change to app directory
-# cd app
-
 # Start Celery Worker
 celery -A Wekker_API worker -B -l info
