@@ -94,7 +94,6 @@ class TVShowSources(models.Model):
     tv_show = models.OneToOneField(TVShow, on_delete=models.CASCADE)
     tmdb_id = models.CharField(max_length=50, null=True)
     imdb_id = models.CharField(max_length=50, null=True)
-    freebase_id = models.CharField(max_length=50, null=True)
     tvdb_id = models.CharField(max_length=50, null=True)
     tvrage_id = models.CharField(max_length=50, null=True)
 
