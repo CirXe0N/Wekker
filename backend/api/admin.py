@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models import UserProfile, TVShow, Genre, Person, Movie, MovieSources
+from api.models import UserProfile, TVShow, Genre, Person, Movie, MovieSources, TVShowSeason, TVShowEpisode
 
 
 @admin.register(UserProfile)
@@ -29,6 +29,17 @@ class PersonAdmin(admin.ModelAdmin):
 @admin.register(TVShow)
 class TVShowAdmin(admin.ModelAdmin):
     list_display = ('name', 'first_air_date', 'status', 'season_count', 'episode_count',)
+
+
+@admin.register(TVShowSeason)
+class TVShowSeasonAdmin(admin.ModelAdmin):
+    list_display = ('tv_show', 'season_number', 'episode_count',)
+    search_fields = ['tv_show__name']
+
+
+@admin.register(TVShowEpisode)
+class TVShowEpisodeAdmin(admin.ModelAdmin):
+    list_display = ('season', 'season_number', 'episode_number',)
 
 
 @admin.register(Movie)
