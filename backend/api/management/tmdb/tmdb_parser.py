@@ -36,83 +36,65 @@ def parse_tv_show_episodes_data(season, episode_data):
     return episode
 
 
-def parse_tv_show_creator_data(tv_show, person):
-    crew_member = TVShowCrewMember()
-    crew_member.job_title = 'Creator'
-    crew_member.person = person
-    crew_member.tv_show = tv_show
-    crew_member.save()
-
-
-def parse_tv_show_crew_member_data(tv_show, person, crew_member_data):
-    crew_member = TVShowCrewMember()
-    crew_member.job_title = crew_member_data['job']
-    crew_member.person = person
-    crew_member.tv_show = tv_show
-    crew_member.save()
-
-
-def parse_tv_show_cast_member_data(tv_show, person, cast_member_data):
-    cast_member = TVShowCastMember()
-    cast_member.character = cast_member_data['character']
-    cast_member.person = person
-    cast_member.tv_show = tv_show
-    cast_member.save()
-
-
-def parse_tv_show_sources_data(tv_show, tv_show_id, sources_data):
+def parse_tv_show_sources_data(tv_show, sources_data):
     sources = TVShowSources()
-    sources.tmdb_id = tv_show_id
+    sources.tmdb_id = tv_show.id
     sources.imdb_id = sources_data.get('imdb_id', None)
-    sources.freebase_id = sources_data.get('freebase_id', None)
     sources.tvdb_id = sources_data.get('tvdb_id', None)
     sources.tvrage_id = sources_data.get('tvrage_id', None)
-    sources.tv_show.id = tv_show.id
+    sources.tv_show_id = tv_show.id
     return sources
 
 
-def parse_movie_data(movie_data):
+def parse_movie_data(media_count, movie_data):
     movie = Movie()
+    movie.id = media_count
     movie.name = movie_data['title']
     movie.overview = movie_data['overview']
     movie.status = movie_data.get('status')
     movie.release_date = movie_data.get('release_date')
     movie.original_language = 'English'
     movie.runtime = movie_data.get('runtime')
-    if movie_data['poster_path']:
-        movie.poster.save('poster.jpg', ContentFile(get_image('w185', movie_data['poster_path']).getvalue()))
-    movie.save()
     return movie
 
 
-def parse_movie_sources_data(movie, movie_id, movie_data):
+def parse_movie_sources_data(movie, movie_data):
     sources = MovieSources()
-    sources.tmdb_id = movie_id
+    sources.tmdb_id = movie.id
     sources.imdb_id = movie_data.get('imdb_id', None)
-    sources.movie = movie
-    sources.save()
+    sources.movie_id = movie.id
     return sources
 
 
-def parse_movie_crew_member_data(movie, person, crew_member_data):
-    crew_member = MovieCrewMember()
-    crew_member.job_title = crew_member_data['job']
-    crew_member.person = person
-    crew_member.movie = movie
-    crew_member.save()
+def update_tv_show_data(tv_show, tv_show_data):
+    tv_show.name = tv_show_data.name
+    tv_show.overview = tv_show_data.overview
+    tv_show.status = tv_show_data.status
+    tv_show.first_air_date = tv_show_data.first_air_date
+    tv_show.in_production = tv_show_data.in_production
+    tv_show.episode_count = tv_show_data.episode_count
+    tv_show.season_count = tv_show_data.season_count
+    return tv_show
 
 
-def parse_movie_cast_member_data(movie, person, cast_member_data):
-    cast_member = MovieCastMember()
+def update_tv_show_season_data(season, season_data):
+    season.season_number = season_data.season_number
+    season.episode_count = season_data.episode_count
+    return season
 
-    if ' / ' in cast_member_data['character']:
-        for character_data in str.split(' / '):
-            cast_member.character = character_data
-            cast_member.person = person
-            cast_member.movie = movie
-            cast_member.save()
-    else:
-        cast_member.character = cast_member_data['character']
-        cast_member.person = person
-        cast_member.movie = movie
-        cast_member.save()
+
+def update_tv_show_episodes_data(episode, episode_data):
+    episode.season_number = episode_data.season_number
+    episode.episode_number = episode_data.episode_number
+    episode.name = episode_data.name
+    episode.overview = episode_data.overview
+    return episode
+
+
+def update_movie_data(movie, movie_data):
+    movie.name = movie_data.name
+    movie.overview = movie_data.overview
+    movie.status = movie_data.status
+    movie.release_date = movie_data.release_date
+    movie.runtime = movie_data.runtime
+    return movie

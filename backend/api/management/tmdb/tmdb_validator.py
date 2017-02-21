@@ -27,6 +27,9 @@ def validate_movie_data(movie):
     if movie.get('adult'):
         return False, 'ADULT MOVIE'
 
+    if not movie.get('release_date'):
+        return False, 'NO RELEASE DATE'
+
     if not movie.get('overview'):
         return False, 'NO OVERVIEW'
 
