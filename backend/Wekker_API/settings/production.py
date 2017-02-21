@@ -10,6 +10,7 @@ INSTALLED_APPS += [
 ]
 
 # AWS S3 Bucket settings
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
@@ -23,6 +24,7 @@ AWS_AUTO_CREATE_BUCKET = True
 AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
 # Static Media settings
+
 STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 MEDIA_URL = STATIC_URL + 'media/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
