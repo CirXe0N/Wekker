@@ -112,8 +112,8 @@ class Command(BaseCommand):
             movie = update_movie_data(movie, request.movie)
             movie.save()
 
-            # if not sources.movie.poster and request.poster:
-            #     sources.movie.poster.update('poster.jpg', request.poster)
+            if not sources.movie.poster and request.poster:
+                sources.movie.poster.save('poster.jpg', request.poster)
 
             for genre in request.genres:
                 if genre not in sources.movie.genres.all():
@@ -164,8 +164,8 @@ class Command(BaseCommand):
             request.movie.save()
             request.sources.save()
 
-            # if request.poster:
-            #     request.movie.poster.save('poster.jpg', request.poster)
+            if request.poster:
+                request.movie.poster.save('poster.jpg', request.poster)
 
             for genre in request.genres:
                 genre, created = Genre.objects.get_or_create(name=genre.name)
