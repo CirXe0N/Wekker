@@ -206,8 +206,8 @@ class MovieRequestThread(threading.Thread):
             self.movie = parse_movie_data(self.media_count, movie_data)
             self.sources = parse_movie_sources_data(self.movie, movie_data)
 
-            # if movie_data['poster_path']:
-            #     self.poster = ContentFile(get_image('w185', movie_data['poster_path']).getvalue())
+            if movie_data['poster_path']:
+                self.poster = ContentFile(get_image('w185', movie_data['poster_path']).getvalue())
 
             for genre_data in movie_data['genres']:
                 self.genres.append(Genre(name=genre_data.get('name')))
